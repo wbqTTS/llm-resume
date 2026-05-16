@@ -5,4 +5,5 @@ output
 dist
 venv/
 .venv/
+resources
 .anima
