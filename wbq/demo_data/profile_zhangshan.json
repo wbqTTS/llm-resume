@@ -1,0 +1,150 @@
+{
+  "personal": {
+    "name": "张三",
+    "birthdate": "2000.05",
+    "phone": "13812345678",
+    "politics": "群众",
+    "email": "zhangsan@outlook.com",
+    "hometown": "福建泉州",
+    "photo": "C:/Users/21080/Desktop/profile_picture_zhangsan.jpg"
+  },
+  "education": [
+    {
+      "university": "浙江大学(985)",
+      "degree": "人工智能",
+      "from_date": "2019.09",
+      "to_date": "2023.06",
+      "gpa": "3.72/4.00",
+      "honors": "第十五届全国大学生数学竞赛省一等奖、全国大学生算法设计与编程挑战赛银奖、校一等奖学金（一次）、校二等奖学金（两次）、优秀学生干部",
+      "courses": [
+        "数据结构(94)",
+        "算法设计与分析(93)",
+        "计算机网络(91)",
+        "操作系统(89)",
+        "数据库系统原理(92)",
+        "编译原理(88)"
+      ]
+    }
+  ],
+  "work_experience": [],
+  "projects": [
+    {
+      "name": "在线判题系统（OJ）",
+      "type": "后端开发",
+      "from_date": "2024.03",
+      "to_date": "2024.08",
+      "description": [
+        "技术栈：Spring Boot 3.0 + MyBatis-Plus + MySQL + Redis + Docker + RabbitMQ",
+        "Situation: 学校ACM集训队缺乏自主可控的在线判题平台，现有平台功能单一、判题效率低，且无法支持团队训练数据统计分析。",
+        "Task: 开发一套完整的在线判题系统，支持题目管理、代码提交、沙箱判题、排名统计、比赛管理等功能，满足集训队日常训练需求。",
+        "Action: 设计基于Docker的隔离沙箱环境，采用cgroups限制资源使用，确保判题安全性与公平性；使用RabbitMQ异步处理判题任务，支持高并发提交场景（峰值100+并发）；实现基于Redis的排行榜缓存机制，更新延迟<1秒；开发代码相似度检测模块，基于余弦相似度算法辅助查重。",
+        "Result: 系统累计服务集训队成员50+人，处理提交记录3000+次，平均判题响应时间<2秒，支持C/C++/Java/Python四种语言；该平台被用于校ACM新生赛，获得指导老师好评。"
+      ]
+    },
+    {
+      "name": "智能图书推荐系统",
+      "type": "算法工程",
+      "from_date": "2024.09",
+      "to_date": "2025.01",
+      "description": [
+        "技术栈：Python + Flask + MySQL + Redis + Elasticsearch + Scrapy",
+        "Situation: 校园图书馆日均借阅量超过2000册，但学生找书效率低下，传统分类检索无法满足个性化需求。",
+        "Task: 构建基于协同过滤和内容混合推荐的图书推荐系统，为用户提供个性化图书推荐服务。",
+        "Action: 使用Scrapy爬取豆瓣读书数据，构建包含10000+图书、5万+用户评分的数据集；采用ItemCF算法实现基于物品的协同过滤，融合图书标签内容的TF-IDF特征进行混合推荐；基于Elasticsearch实现全文检索，支持模糊搜索和拼音搜索；使用Redis缓存热门图书Top100，响应时间<100ms。",
+        "Result: 推荐系统在测试集上Recall@10达到32.5%，用户满意度调查显示70%用户认为推荐结果符合预期；系统部署于校园服务器，日均请求量500+次。"
+      ]
+    },
+    {
+      "name": "智能问答助手（RAG系统）",
+      "type": "AI应用",
+      "from_date": "2025.02",
+      "to_date": "2025.04",
+      "description": [
+        "技术栈：Python + LangChain + ChromaDB + Streamlit + Ollama + Qwen2.5",
+        "Situation: 课程学习过程中，学生经常需要翻阅大量教材和课件寻找知识点，效率低下。",
+        "Task: 开发基于RAG（检索增强生成）的课程问答系统，能够根据教材内容准确回答专业问题。",
+        "Action: 使用LangChain框架构建RAG流水线，将计算机专业课程教材（约500页PDF）切片为1500+文本块；采用BGE-large-zh模型生成向量嵌入，存入ChromaDB向量数据库；基于Ollama部署Qwen2.5-7B模型作为生成器，实现本地化问答；设计两阶段检索策略，先召回Top5相关文档，再使用重排序模型精排。",
+        "Result: 系统问答准确率达到85%，平均响应时间约5秒；项目作为课程设计获得优秀评级，代码开源至GitHub获得50+Star。"
+      ]
+    }
+  ],
+  "skill_section": [
+    {
+      "name": "编程语言",
+      "skills": [
+        "Python",
+        "Java",
+        "C++",
+        "JavaScript",
+        "TypeScript",
+        "SQL"
+      ]
+    },
+    {
+      "name": "开发框架",
+      "skills": [
+        "Spring Boot",
+        "MyBatis-Plus",
+        "Flask",
+        "LangChain",
+        "Vue.js",
+        "React"
+      ]
+    },
+    {
+      "name": "数据库与中间件",
+      "skills": [
+        "MySQL",
+        "PostgreSQL",
+        "Redis",
+        "Elasticsearch",
+        "RabbitMQ",
+        "Docker"
+      ]
+    },
+    {
+      "name": "AI与机器学习",
+      "skills": [
+        "Scikit-learn",
+        "Pandas",
+        "NumPy",
+        "LangChain",
+        "Prompt Engineering",
+        "RAG"
+      ]
+    },
+    {
+      "name": "开发工具",
+      "skills": [
+        "Git",
+        "Linux",
+        "Docker",
+        "Postman",
+        "VS Code",
+        "IntelliJ IDEA"
+      ]
+    }
+  ],
+  "social_practice": [
+    {
+      "role": "校ACM集训队队长",
+      "description": [
+        "组织集训队日常训练，制定训练计划，带领队员参加ICPC、CCPC等算法竞赛，团队获得省级奖项3项。",
+        "组织举办校ACM新生赛，参赛人数150+人，负责题目设计与系统维护。"
+      ]
+    },
+    {
+      "role": "计算机学院学生会技术部部长",
+      "description": [
+        "负责学院官网维护与功能迭代，开发活动报名系统，服务学院师生2000+人。",
+        "组织技术分享会6场，内容涵盖Git使用、Spring Boot入门、AI基础等。"
+      ]
+    },
+    {
+      "role": "暑期支教志愿者",
+      "description": [
+        "赴福建龙岩山区小学开展为期两周的支教活动，负责教授编程启蒙课程，服务学生30+人。"
+      ]
+    }
+  ]
+}

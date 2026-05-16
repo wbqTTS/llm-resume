@@ -1,0 +1,126 @@
+{
+  "personal": {
+    "name": "张明",
+    "birthdate": "2003.11",
+    "phone": "13800001234",
+    "politics": "共青团员",
+    "email": "zhangming@example.com",
+    "hometown": "福建福州",
+    "photo": "",
+    "title": "Java 后端开发 / AI 应用开发",
+    "summary": "计算机专业本科生，熟悉 Java 后端开发、数据库设计和 AI 应用集成，具备完整项目交付经验。",
+    "media": {
+      "github": "https://github.com/demo-user",
+      "linkedin": "",
+      "medium": "",
+      "devpost": ""
+    }
+  },
+  "education": [
+    {
+      "university": "福州大学",
+      "degree": "计算机科学与技术 本科",
+      "from_date": "2022.09",
+      "to_date": "2026.06",
+      "gpa": "3.66/4.00",
+      "honors": "校一等奖学金、数学建模竞赛省级一等奖",
+      "courses": [
+        "数据结构",
+        "操作系统",
+        "数据库系统原理",
+        "计算机网络",
+        "软件工程"
+      ]
+    }
+  ],
+  "work_experience": [
+    {
+      "role": "后端开发实习生",
+      "company": "星云软件工作室",
+      "location": "福州",
+      "from_date": "2025.03",
+      "to_date": "2025.08",
+      "description": [
+        "参与 Spring Boot 业务接口开发，完成用户、权限、文件上传等模块。",
+        "使用 Redis 缓存热点配置数据，减少重复数据库查询。",
+        "协助排查接口超时问题，优化慢 SQL 并补充接口日志。"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "智能简历生成与岗位匹配系统",
+      "type": "毕业设计 / AI 应用开发",
+      "from_date": "2025.10",
+      "to_date": "2026.05",
+      "description": [
+        "基于 Streamlit 构建简历生成平台，支持 JD 输入、简历上传、模型配置、PDF 导出。",
+        "设计 RAG + CoT 的章节优化流程，根据岗位关键词重写项目和工作经历。",
+        "集成 SQLite 保存历史记录，并提供匹配度分析、词云和简历比对功能。"
+      ]
+    },
+    {
+      "name": "校园二手交易平台",
+      "type": "Java 全栈项目",
+      "from_date": "2024.09",
+      "to_date": "2024.12",
+      "description": [
+        "使用 Spring Boot、MyBatis、MySQL 实现商品发布、搜索、收藏和订单管理。",
+        "设计基础 RBAC 权限模型，区分普通用户和管理员操作。",
+        "使用分页查询和索引优化商品列表接口响应速度。"
+      ]
+    }
+  ],
+  "skill_section": [
+    {
+      "name": "编程语言",
+      "skills": [
+        "Java",
+        "Python",
+        "SQL",
+        "JavaScript"
+      ]
+    },
+    {
+      "name": "后端框架",
+      "skills": [
+        "Spring Boot",
+        "MyBatis",
+        "Flask"
+      ]
+    },
+    {
+      "name": "数据库与中间件",
+      "skills": [
+        "MySQL",
+        "Redis",
+        "SQLite"
+      ]
+    },
+    {
+      "name": "工具与部署",
+      "skills": [
+        "Git",
+        "Docker",
+        "Linux",
+        "LaTeX"
+      ]
+    }
+  ],
+  "social_practice": [
+    {
+      "role": "学院科技协会成员",
+      "description": [
+        "组织技术分享活动，协助同学完成 Java 与数据库课程项目答疑。"
+      ]
+    }
+  ],
+  "certifications": [
+    "CET-6",
+    "计算机二级 Java"
+  ],
+  "achievements": [
+    "校级优秀学生干部",
+    "互联网+创新创业大赛校级银奖"
+  ]
+}

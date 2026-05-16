@@ -1,0 +1,153 @@
+% ============================================================
+% 学术严谨风格 - Academic CV Style
+% 特点：白底黑字、信息密度高、出版物突出、研究经历详细
+% ============================================================
+\ProvidesFile{style_academic.tex}
+
+% ===== 学术风格配色 =====
+\definecolor{primary}{RGB}{0, 64, 128}      % 深蓝（学术蓝）
+\definecolor{secondary}{RGB}{80, 80, 80}    % 深灰
+\definecolor{text}{RGB}{50, 50, 50}         % 正文灰色
+
+% ===== 页面设置 =====
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% ===== 姓名设计 =====
+\newcommand{\name}[1]{%
+  \begin{center}
+    {\fontsize{28}{36}\selectfont \bfseries \color{primary} #1}
+  \end{center}
+  \vspace{4pt}
+}
+
+% ===== 联系方式 =====
+\newcommand{\contact}[1]{%
+  \begin{center}
+    {\small \color{secondary} #1}
+  \end{center}
+  \vspace{12pt}
+  {\color{primary!30}\hrule}
+  \vspace{12pt}
+}
+
+% ===== 研究兴趣 =====
+\newcommand{\researchinterest}[1]{%
+  \noindent
+  \textbf{\color{primary} 研究兴趣:} \textcolor{secondary}{#1}
+  \vspace{12pt}
+  {\color{primary!30}\hrule}
+  \vspace{12pt}
+}
+
+% ===== 标准 Section 标题 =====
+\titleformat{\section}
+  {\large\bfseries\color{primary}}
+  {}{0em}{}
+  [{\color{primary!40}\rule{0.6\linewidth}{0.5pt}}]
+
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+
+% ===== 教育条目 =====
+\newcommand{\educationentry}[5]{%
+  \noindent
+  \begin{minipage}[t]{0.7\linewidth}
+    \textbf{\color{primary} #1} \\
+    \textit{\color{secondary} #2}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.25\linewidth}
+    \raggedleft \textcolor{secondary}{\textit{#3}}
+  \end{minipage}
+  \vspace{2pt}
+
+  \noindent \textcolor{text}{\small #4}
+  \vspace{4pt}
+
+  \noindent \textcolor{text}{\small #5}
+  \vspace{10pt}
+}
+
+% ===== 出版物条目 =====
+\newcommand{\publicationentry}[5]{%
+  \noindent
+  \textcolor{primary}{\textbf{#1}} \textcolor{text}{#2} \textcolor{secondary}{\textit{#3}}, \textcolor{text}{#4}
+  \vspace{6pt}
+}
+
+% ===== 研究/科研经历条目 =====
+\newcommand{\researchentry}[5]{%
+  \noindent
+  \begin{minipage}[t]{0.7\linewidth}
+    \textbf{\color{primary} #1} \\
+    \textit{\color{secondary} #2}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.25\linewidth}
+    \raggedleft \textcolor{secondary}{\textit{#4}}
+  \end{minipage}
+  \vspace{2pt}
+
+  \noindent \textcolor{secondary}{\small #3}
+  \vspace{4pt}
+
+  \noindent \textcolor{text}{\small #5}
+  \vspace{12pt}
+}
+
+% ===== 会议报告条目 =====
+\newcommand{\conferenceentry}[5]{%
+  \noindent
+  \textcolor{primary}{•} \textbf{\color{primary} #1} \textcolor{secondary}{\textit{#2}}, \textcolor{text}{#3}, \textcolor{secondary}{#4} \hfill \textcolor{secondary}{\small #5}
+  \vspace{4pt}
+}
+
+% ===== 荣誉奖项条目 =====
+\newcommand{\honorentry}[3]{%
+  \noindent
+  \textcolor{primary}{•} \textbf{\color{primary} #1} \textcolor{secondary}{#2} \hfill \textcolor{secondary}{\small #3}
+  \vspace{4pt}
+}
+
+% ===== 教学经历条目 =====
+\newcommand{\teachingentry}[5]{%
+  \noindent
+  \begin{minipage}[t]{0.7\linewidth}
+    \textbf{\color{primary} #1} \\
+    \textbf{\color{secondary} \textbf{#2}}   % <--- 这里加粗了 institution
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.25\linewidth}
+    \raggedleft \textcolor{secondary}{\textit{#4}}
+  \end{minipage}
+  \vspace{2pt}
+
+  \noindent \textcolor{secondary}{\small #3}
+  \vspace{-6pt}
+
+  \noindent \textcolor{text}{\small #5}
+  \vspace{10pt}
+}
+
+% ===== 技能部分 =====
+\newcommand{\skillsection}[2]{%
+  \noindent
+  \textbf{\color{primary} #1:} \textcolor{secondary}{#2} \\
+}
+
+% ===== 学术服务条目 =====
+\newcommand{\serviceentry}[3]{%
+  \noindent
+  \textcolor{primary}{•} \textbf{\color{primary} #1} \textcolor{secondary}{#2} \hfill \textcolor{secondary}{\small #3}
+  \vspace{4pt}
+}
+
+% ===== 推荐人条目 =====
+\newcommand{\referenceentry}[4]{%
+  \noindent
+  \textbf{\color{primary} #1} \\
+  \textcolor{secondary}{#2} \\
+  \textcolor{text}{\small Email: #3} \\
+  \textcolor{text}{\small Tel: #4}
+  \vspace{8pt}
+}

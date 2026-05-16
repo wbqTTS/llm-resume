@@ -1,0 +1,141 @@
+%==== PACKAGES AND OTHER DOCUMENT CONFIGURATIONS  ====%
+\documentclass{resume} % Use the custom resume.cls style
+\usepackage[left=0.25in,top=0.25in,right=0.25in,bottom=0.25in]{geometry} % Document margins
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome} % For GitHub and LinkedIn symbols
+\usepackage{textcomp} % For mobile phone and email symbols
+% \usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{xcolor}  % Required for defining custom colors
+\usepackage{hyperref}
+% Define your custom colors
+% \definecolor{myblue}{RGB}{173, 216, 246}
+% \definecolor{myblue}{RGB}{123, 176, 206}
+\definecolor{myblue}{RGB}{0, 164, 218}
+
+% Set hyperlink colors
+\hypersetup{
+    colorlinks=true,
+    linkcolor=myblue,
+    citecolor=myblue,
+    urlcolor=myblue
+}
+
+\usepackage{hyperref}
+
+%==== Headings ====%
+\name{SAURABH BHAUSAHEB ZINJAD} % Your name
+\address{
+{\faPhone} \href{tel:480{-}913{-}5544}{480{-}913{-}5544} \quad {\faEnvelope} \href{mailto:saurabhzinjad@gmail.com}{saurabhzinjad@gmail.com} \quad {\faGithub} \href{https://github.com/Ztrimus}{https://github.com/Ztrimus} \quad {\faLinkedin} \href{https://linkedin.com/in/saurabhzinjad}{https://linkedin.com/in/saurabhzinjad} }
+
+% --- 新增以下三行，兼容中文 ---
+\usepackage[UTF8]{ctex} % 引入中文支持
+\usepackage{fontspec}   % 允许使用系统字体（可选，但推荐）
+\setmainfont{SimSun}    % 设置主字体为宋体 (或者 SimHei 黑体, Microsoft YaHei 微软雅黑)
+% ----------------------
+
+\begin{document}
+
+%===== WORK EXPERIENCE SECTION =====%
+    \begin{rSection}{Work Experience}
+                    \begin{rSubsection}
+                {高级机器学习工程师}{2022年6月 - 2023年7月}
+                                    {\normalfont{\textit{Tiger Analytics}}}
+                                {\normalfont{\textit{印度班加罗尔}}}
+                                    \item 通过使用Python、PySpark和Databricks训练和优化预测性机器学习模型并构建可扩展的数据管道，使客户收入增加了18\%。
+                                    \item 设计了一个多云模型监控平台，用于生命周期跟踪/警报，支持了10多个客户的采用。
+                                    \item 领导一个由8名分析师组成的团队，主导开发了宠物护理行业MSP价值优化的数据与CI/CD管道、交互式仪表板、基于约束的机器学习模型、Web应用程序及综合文档。
+                            \end{rSubsection}
+                    \begin{rSubsection}
+                {软件工程师}{2020年1月 - 2022年6月}
+                                    {\normalfont{\textit{Winjit Technologies}}}
+                                {\normalfont{\textit{印度浦那}}}
+                                    \item 构建了10多个用于实时人工智能数据处理的RESTful API，并开发了30多个低延迟响应式的UI React功能。
+                                    \item 优化了大规模MySQL和PostgreSQL数据库，加速了人工智能模型训练和实时推理的数据访问。
+                                    \item 通过创建具有动态表单重新配置和可定制CSS功能的数据驱动UI框架，将开发效率提高了8倍，并与12人的跨职能团队协作。
+                            \end{rSubsection}
+                    \begin{rSubsection}
+                {研究实习生}{2019年3月 - 2019年8月}
+                                    {\normalfont{\textit{IMATMI, Robbinsville}}}
+                                {\normalfont{\textit{新泽西 (远程)}}}
+                                    \item 开展研究并开发了一系列机器学习和统计模型，旨在设计分析工具并简化人力资源流程，优化人才管理系统以提高效率。
+                                    \item 创建了员工'目标与行动计划生成'工具，综合考虑员工的弱点以促进职业成长。
+                                    \item 实施自动化系统来识别即将开展项目的'最佳匹配员工'，改善了项目成果并为管理者优化了资源分配。
+                            \end{rSubsection}
+            \end{rSection}
+
+%==== EDUCATION SECTION ====%
+\begin{rSection}{Education}
+                        \textbf{亚利桑那州立大学, 坦佩, 美国} \hfill {2023 年 8 月 - 2025 年 5 月} \\
+                            {计算机科学硕士 {-} 论文方向}
+                         
+             
+         
+                        \textbf{浦那计算机技术学院, 浦那, 印度} \hfill {2015 年 7 月 - 2019 年 6 月} \\
+                            {电子与通信工程学士}
+                         
+             
+         
+    \end{rSection}
+
+% ==== PROJECTS SECTION =====%
+    \begin{rSection}{Projects}
+                    \begin{rSubsection}
+                                    {\href{https://devpost.com/software/team{-}soul{-}1fjgwo}{用于媒体搜索的多模态人工智能系统}}
+                                {\normalfont{2024年10月 - 2024年10月}}{}{}
+                                    \item 通过开发一个跨视频/音频/图像的内容搜索系统，使用Postgres数据库实现了92\%的媒体搜索速度提升。
+                                    \item 利用AWS、CLIP和向量数据库技术，构建了一个高效的多模态人工智能系统，将搜索响应时间缩短至毫秒级。
+                                    \item 在Python FAST API和Angular框架中实现了高效的数据访问和检索功能，显著提高了系统的性能和用户体验。
+                            \end{rSubsection}
+                    \begin{rSubsection}
+                                    {\href{https://github.com/OmdenaAI/Dryad}{利用物联网传感器数据进行森林火灾检测}}
+                                {\normalfont{2021年9月 - 2022年1月}}{}{}
+                                    \item 在边缘设备上实施了TabNet分类器模型，准确率达到98.7\%，并通过TinyML、Docker、Redis和Celery技术部署在AWS和Silvanet野火传感器上。
+                                    \item 通过SMOTE和超参数优化平衡数据并提高召回率，将检测森林火灾的误报时间减少到7分钟内。
+                                    \item 执行了模型探索、分析和优化，确保系统的高性能和可靠性。
+                            \end{rSubsection}
+                    \begin{rSubsection}
+                                    {\href{https://www.linkedin.com/pulse/exploring{-}depths{-}ai{-}story{-}writing{-}prompt{-}engineering{-}hackathon{-}wbqwc}{生成式人工智能的能力与边界探索 {-} 人文领域提示工程黑客松}}
+                                {\normalfont{2023年10月 - 2023年10月}}{}{}
+                                    \item 通过精心设计的人工智能角色，探索大语言模型的微妙上下文理解能力，并创建了人机之间的创新协作模式。
+                                    \item 通过创新方法解决了故事流畅性、简洁性、情感深度和幻想等方面的局限性，提升了整体内容质量。
+                                    \item 展示了创造性思维以及在黑客松期间驾驭复杂任务和适应不断变化需求的能力。
+                            \end{rSubsection}
+            \end{rSection}
+
+%==== TECHNICAL STRENGTHS SECTION ====%
+    \begin{rSection}{Technical Skills}
+        \begin{tabular}{ @{} l @{\hspace{1ex}} l }
+                                \textbf{编程语言}: Python, JavaScript/TypeScript, C\#, SQL\\
+                                \textbf{后端开发框架}: Django, FastAPI, Flask\\
+                                \textbf{数据库}: MySQL, PostgreSQL, Redis\\
+                                \textbf{云与 DevOps}: AWS (Bedrock, Lambda, S3, CloudWatch, API Gateway, Cognito), Docker, Kubernetes\\
+                                \textbf{消息队列}: Kafka, RabbitMQ\\
+                                \textbf{其他相关技能}: RESTful API 设计, 微服务架构, 性能优化, 代码审查, 团队合作\\
+                        \textbf{Certifications:} 
+                                            \href{https://www.coursera.org/account/accomplishments/verify/TYMQX23D4HRQ}{\textbf{服务器端后端开发}},\\
+                                            \href{https://www.udemy.com/certificate/UC{-}37e943d1{-}e7f7{-}4d27{-}a1e4{-}e799aef7013b/}{\textbf{Microsoft Azure 基础知识}},\\
+                                 
+        \end{tabular}
+    \end{rSection}
+ 
+
+% ACHIEVEMENTS SECTION
+    \begin{rSection}{Achievements}
+        \begin{rSubsection}{}{}{}
+                            \item 在2018年E{-}yantra机器人竞赛中获得决赛选手资格 {-} 印度理工学院孟买分校 (IITB)。
+                            \item 因在Winjit Technologies的出色表现荣获'2021年度卓越员工'奖。
+                            \item 在大学和专业层面赢得了多次黑客松和编程竞赛。
+                            \item 机器学习俱乐部主席：领导一个20人的团队完成项目，并被评为'年度最佳项目'。
+                            \item 在多个获奖的校级戏剧比赛中表演，并三次获得最佳组织团队奖。
+                            \item 在“2023年人文领域提示工程黑客松”中获得一等奖。
+                            \item NSS（PICT国家社会服务小组）活跃成员，展示了良好的团队合作精神和社会责任感。
+                    \end{rSubsection}
+    \end{rSection}
+
+\newcommand\myfontsize{\fontsize{0.1pt}{0.1pt}\selectfont} \myfontsize \color{white}
+Python 后端开发, Django, FastAPI, 数据库建模, 性能调优, RESTful API, 微服务化, Docker, Kubernetes, 代码审查, 团队合作, 技术热情, Python 后端开发, Django, FastAPI, 数据库建模, 性能调优, RESTful API, 微服务化, Docker, Kubernetes, 代码审查, 团队合作, 技术热情, {artificial intelligence engineer, azure cognitive services exp, azure services, core azure services, azure cognitive and generative ai, genai, aws,  gcp, java, clean, efficient, maintainable code, react, front end, back end, ai solutions, data analysis, pretrained models, automl, software development principles, version control, testing, continuous integration and deployment, python, javascript, prompt engieering, frontend, backend, html, css, api, angular, development, machine learning, artificial intelligence, deep learning, data warehouse, data modeling, data extraction, data transformation, data loading, sql, etl, data quality, data governance, data privacy, data visualization, data controls, privacy, security, compliance, sla, aws, terabyte to petabyte scale data, full stack software development, cloud, security engineering, security architecture, ai/ml engineering, technical product management, microsoft office, google suite, visualization tools, scripting, coding, programming languages, analytical skills, collaboration, leadership, communication, presentation skills, computer vision, senior, ms or ph.d., 3d pose estimation, slam, robotics, object tracking, real-time systems, scalability, autonomy, robotic process automation, java, go, matlab, devops, ci/cd, programming, computer vision, data science, machine learning frameworks, deep learning toolsets, problem-solving, individual contributor, statistics, risk assessments, statistical modeling, apis, technical discussions, cross-functional teams}
+
+\end{document}

@@ -1,0 +1,102 @@
+% ============================================================
+% 极简现代风格 - Minimal Style
+% 特点：黑白灰、无衬线字体、大量留白、单栏布局、ATS友好
+% ============================================================
+\ProvidesFile{style_minimal.tex}
+
+% ===== 极简配色 =====
+\definecolor{namecolor}{RGB}{0, 0, 0}       % 姓名：纯黑
+\definecolor{titlecolor}{RGB}{50, 50, 50}   % 标题：深灰
+\definecolor{textcolor}{RGB}{80, 80, 80}    % 正文：中灰
+\definecolor{accent}{RGB}{100, 100, 100}    % 强调色：浅灰
+
+% ===== 页面设置 =====
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% ===== 字体设置（无衬线）=====
+\renewcommand{\familydefault}{\sfdefault}
+\setmainfont{Arial}
+\setCJKmainfont{Microsoft YaHei}  % 微软雅黑
+
+% ===== 姓名设计 =====
+\newcommand{\name}[1]{%
+  \begin{center}
+    {\fontsize{28}{36}\selectfont \bfseries \color{namecolor} #1}
+  \end{center}
+  \vspace{8pt}
+}
+
+% ===== 联系方式 =====
+\newcommand{\contact}[1]{%
+  \begin{center}
+    {\small \color{textcolor} #1}
+  \end{center}
+  \vspace{12pt}
+}
+
+% ===== 个人摘要 =====
+\newcommand{\summary}[1]{%
+  \noindent
+  \hspace{2em}\textcolor{textcolor}{#1}
+  \vspace{12pt}
+}
+
+% ===== Section 标题（带下划线）=====
+\titleformat{\section}
+  {\fontsize{16}{20}\selectfont\bfseries\color{titlecolor}}
+  {}{0em}{}
+  [{\color{accent}\titlerule[0.5pt]}]
+
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+% ===== 工作/项目条目 =====
+\newcommand{\entry}[4]{%
+  \noindent
+  \begin{minipage}[t]{0.7\linewidth}
+    \textbf{\color{titlecolor} #1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.25\linewidth}
+    \raggedleft \small \textcolor{textcolor}{\textit{#2}}
+  \end{minipage}
+  \vspace{2pt}
+
+  \noindent \textcolor{textcolor}{#3}
+  \vspace{-6pt}
+
+  \noindent \small \textcolor{textcolor}{#4}
+  \vspace{10pt}
+}
+
+% ===== 教育条目 =====
+\newcommand{\educationentry}[4]{%
+  \noindent
+  \begin{minipage}[t]{0.7\linewidth}
+    \textbf{\color{titlecolor} #1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.25\linewidth}
+    \raggedleft \small \textcolor{textcolor}{\textit{#2}}
+  \end{minipage}
+  \vspace{2pt}
+
+  \noindent \textcolor{textcolor}{#3}
+  \vspace{4pt}
+
+  \noindent \small \textcolor{textcolor}{#4}
+  \vspace{10pt}
+}
+
+% ===== 技能部分（用逗号分隔）=====
+\newcommand{\skillsection}[2]{%
+  \noindent
+  \textbf{\color{titlecolor} #1:} \textcolor{textcolor}{#2} \\
+}
+
+% ===== 荣誉奖项条目 =====
+\newcommand{\honorentry}[2]{%
+  \noindent
+  \textcolor{textcolor}{•} \textcolor{titlecolor}{#1} \hfill \small \textcolor{textcolor}{\textit{#2}} \\
+  \vspace{-2pt}
+}

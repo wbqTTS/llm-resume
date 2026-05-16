@@ -1,0 +1,128 @@
+% 声明使用 resume 文档类（定义在 resume.cls 中）
+% 这行告诉 LaTeX：我要用自定义的简历模板格式
+\documentclass{resume}
+
+% 加载商务经典风格的样式定义文件
+% 这个文件（style_classic.tex）包含了所有商务风格需要的命令定义
+% 比如 \name, \contact, \entry, \education, \skillsection 等
+\input{styles/style_classic.tex}
+
+% 文档内容开始
+\begin{document}
+
+% ===== 个人信息区域 =====
+% 使用 style_classic.tex 中定义的 \name 命令显示姓名
+% \VAR{personal.name} 会被替换为实际数据中的姓名，如 "SAURABH BHAUSAHEB ZINJAD"
+\name{\VAR{personal.name}}
+
+% 使用 \contact 命令显示联系方式
+% \quad 是一个 LaTeX 空格命令，相当于一个空格的宽度
+% 这里用 "|" 分隔不同联系方式：邮箱 | 电话 | 关键词第一个词
+\contact{\VAR{personal.email} \quad | \quad \VAR{personal.phone} \quad | \quad \VAR{personal.keywords.split(',')[0] if personal.keywords else ""}}
+
+% ===== 专业摘要 =====
+% 只有当summary存在且不为空时才显示整个section
+\BLOCK{if personal.summary}
+\section{Professional Summary}
+\VAR{personal.summary}
+\BLOCK{endif}
+
+% ===== 工作经历 =====
+\section{Professional Experience}
+
+% Jinja2 的 for 循环：遍历 work_experience 列表中的每个工作经历
+\BLOCK{for job in work_experience}
+
+% 使用 style_classic.tex 中定义的 \entry 命令显示一条工作经历
+% 参数1：职位名称（job.role）
+% 参数2：日期范围（from_date -- to_date）
+% 参数3：公司名称和地点（job.company, job.location）
+% 参数4：工作描述列表（放在大括号内）
+\entry{\VAR{job.role}}{\VAR{job.from_date} -- \VAR{job.to_date}}{\VAR{job.company}, \VAR{job.location}}{
+
+% 内层循环：遍历当前工作的所有描述点
+\BLOCK{for d in job.description}
+% \textbullet 是 LaTeX 的实心圆点符号（•）
+% 每个描述点前面加圆点，后面加换行（\\）
+\textbullet\ \VAR{d} \\
+\BLOCK{endfor}
+}  % 结束 \entry 命令的第四个参数
+\BLOCK{endfor}  % 结束工作经历的循环
+
+% ===== 教育背景 =====
+\section{Education}
+
+% 遍历 education 列表
+\BLOCK{for edu in education}
+
+% 使用 style_classic.tex 中定义的 \education 命令显示教育经历
+% 参数1：大学名称
+% 参数2：日期范围
+% 参数3：学位
+% 参数4：相关课程（如果有）
+\education{\VAR{edu.university}}{\VAR{edu.from_date} -- \VAR{edu.to_date}}{\VAR{edu.degree}}{
+
+% 条件判断：如果有课程列表（edu.courses 存在且不为空）
+\BLOCK{if edu.courses}
+% \textbf 是 LaTeX 的粗体命令
+% ", ".join(edu.courses) 会把课程列表用逗号连接成字符串
+\textbf{Relevant Courses:} \VAR{", ".join(edu.courses)}
+\BLOCK{endif}  % 结束条件判断
+}  % 结束 \education 命令的第四个参数
+\BLOCK{endfor}  % 结束教育经历的循环
+
+% ===== 技术技能 =====
+\section{Technical Skills}
+
+% 遍历 skill_section 列表
+\BLOCK{for s in skill_section}
+
+% 使用 style_classic.tex 中定义的 \skillsection 命令显示技能分类
+% 参数1：技能类别名称（如 "编程语言"）
+% 参数2：技能列表，用逗号连接
+\skillsection{\VAR{s.name}}{\VAR{", ".join(s.skills)}}
+\BLOCK{endfor}  % 结束技能循环
+
+% ===== 项目经历 =====
+\section{Projects}
+
+% 遍历 projects 列表
+\BLOCK{for p in projects}
+
+% 没有用 \entry 命令，而是直接写 LaTeX 格式
+% \textbf 让项目名称变粗体
+% \hfill 是弹性空格，把日期推到最右边
+\textbf{\VAR{p.name}} (\VAR{p.type}) \hfill \VAR{p.from_date} -- \VAR{p.to_date} \\
+% 换行后开始显示项目描述
+
+% 内层循环：遍历项目描述
+\BLOCK{for d in p.description}
+\textbullet\ \VAR{d} \\  % 每个描述点前面加圆点
+\BLOCK{endfor}
+
+% 条件判断：如果有项目链接
+\BLOCK{if p.link}
+% \faLink 是 fontawesome5 提供的链接图标
+\faLink\ \VAR{p.link}  % 显示链接图标和URL
+\BLOCK{endif}
+
+% \vspace{6pt} 添加6磅的垂直间距，分隔不同项目
+\vspace{6pt}
+\BLOCK{endfor}  % 结束项目循环
+
+% ===== 成就和认证 =====
+\section{Achievements \& Certifications}
+
+% 遍历 achievements 列表
+\BLOCK{for a in achievements}
+\textbullet\ \VAR{a} \\  % 每个成就前面加圆点
+\BLOCK{endfor}
+
+% 遍历 certifications 列表
+\BLOCK{for c in certifications}
+% 显示格式：• 认证名称 - 颁发机构
+\textbullet\ \VAR{c.name} - \VAR{c.by} \\
+\BLOCK{endfor}
+
+% 文档内容结束
+\end{document}

@@ -1,0 +1,22 @@
+Senior Data Scientist
+
+We are looking for a Senior Data Scientist to join our AI team at TechInnovate. In this role, you will lead data-driven decision making and develop machine learning models that power our core products.
+
+Responsibilities:
+- Design and implement machine learning models for predictive analytics and recommendation systems
+- Collaborate with engineering teams to deploy models to production
+- Analyze large datasets to extract actionable business insights
+- Mentor junior data scientists and contribute to technical strategy
+- Communicate findings to stakeholders through visualizations and presentations
+
+Requirements:
+- 5+ years of experience in data science or related field
+- Strong programming skills in Python (pandas, numpy, scikit-learn, tensorflow/pytorch)
+- Experience with SQL and big data technologies (Spark, Hadoop)
+- Solid understanding of statistics and machine learning algorithms
+- Bachelor's degree in Computer Science, Statistics, or related field (Master's/PhD preferred)
+
+Preferred:
+- Experience with cloud platforms (AWS, GCP, Azure)
+- Knowledge of NLP or computer vision
+- Published research or contributions to open source projects

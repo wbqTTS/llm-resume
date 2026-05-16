@@ -1,0 +1,360 @@
+{
+  "name": "SAURABH BHAUSAHEB ZINJAD",
+  "title": "我构建解决现实世界问题的人工智能系统。",
+  "summary": "多才多艺的工程师，拥有6年开发可投入生产的机器学习解决方案和全栈应用程序的经验。管理从设计到部署及云环境优化的端到端管道。热衷于推进人工智能基础设施、微调基础模型，并在全球范围内提供可扩展且具成本效益的解决方案。",
+  "phone": "480-913-5544",
+  "email": "saurabhzinjad@gmail.com",
+  "media": {
+    "linkedin": "https://linkedin.com/in/saurabhzinjad",
+    "github": "https://github.com/Ztrimus",
+    "medium": "https://ztrimus.medium.com",
+    "devpost": "https://devpost.com/Ztrimus"
+  },
+  "work_experience": [
+    {
+      "role": "人工智能/机器学习工程师 II",
+      "company": "菲尼克斯大学 (University of Phoenix)",
+      "location": "亚利桑那州，美国",
+      "from_date": "2025年2月",
+      "to_date": "至今",
+      "description": [
+        "构建了生成式人工智能 + 可解释性工具（LangGraph + OpenAI），用于处理非结构化数据并自动解释复杂的学术/财务计算，将顾问支持能力提高了6倍",
+        "将组织知识库与大语言模型集成，构建管道以提取代码逻辑并转化为逐步解释，加速了入职流程并提高了开发人员生产力",
+        "通过使用 LangGraph 和 OpenAI 构建生成式人工智能 + 可解释性工具来处理非结构化数据并自动解释复杂的学术/财务计算，将顾问支持能力提高了6倍。"
+      ]
+    },
+    {
+      "role": "人工智能研究实习生",
+      "company": "菲尼克斯大学 (University of Phoenix)",
+      "location": "亚利桑那州，美国",
+      "from_date": "2024年5月",
+      "to_date": "2024年8月",
+      "description": [
+        "开发了带有思维链推理的大语言模型摘要仪表板，并通过 Kafka 与 Salesforce 集成，使顾问效率提高了40%",
+        "创建了文本转视觉 API 服务，将文本转换为交互式图表，并将其集成到 Slack/Teams/CRM 系统中，显著提高了文档编写速度",
+        "通过开发带有思维链推理的大语言模型摘要仪表板并通过 Kafka 与 Salesforce 集成，将顾问效率提高了40%。",
+        "在一次获奖的黑客松中领导开发了人工智能驱动的学生笔记摘要工具，显著提高了顾问效率并增强了学生体验。",
+        "开发了一种创新的人工智能复杂计算解释系统，整合了多种数据源（如日志文件和代码库）及 API，将学生支持解决速度提高了6倍。（创新方法）",
+        "实施了关键的 Salesforce 后端逻辑，用于追踪超额资金案例中的未来自付费用，简化了财务流程并提高了数据准确性。",
+        "关键技术：Python, Salesforce, Amazon Bedrock, LangChain, GPT4o, Claude Sonnet, Llama 3"
+      ]
+    },
+    {
+      "role": "数据分析师",
+      "company": "亚利桑那州立大学决策剧院 (Decision Theater at Arizona State University)",
+      "location": "坦佩，美国",
+      "from_date": "2024年1月",
+      "to_date": "至今",
+      "description": [
+        "开发并实施了先进的数据降尺度技术，将分辨率从 PUMS 提升到街区级别，并利用聚类算法（k-means, DBSCAN, 层次聚类）分析高分辨率模式，将政策洞察的粒度提高了40%。",
+        "设计了用于合成数据生成和分析的自定义 Python 库，集成机器学习模型进行数据块属性预测和分类，使数据处理效率提高了30%。",
+        "进行了全面的统计分析，包括相关性研究（皮尔逊相关、余弦相似度）和属性提取，创建了有影响力的可视化和报告，直接为政策制定者的决策和利益相关者的沟通提供了依据。"
+      ]
+    },
+    {
+      "role": "高级机器学习工程师",
+      "company": "Tiger Analytics",
+      "location": "班加罗尔，印度",
+      "from_date": "2022年6月",
+      "to_date": "2023年7月",
+      "description": [
+        "训练并调优了预测性机器学习模型和可扩展的数据管道（Python, PySpark, Databricks），使客户收入增加了18%",
+        "架构了一个多云模型监控平台，用于生命周期跟踪/警报，支持了10多个客户的采用",
+        "通过使用 Python、PySpark 和 Databricks 训练和调优预测性机器学习模型并构建可扩展的数据管道，使客户收入增加了18%。",
+        "带领8名分析师团队，主导开发了宠物护理行业 MSP 价值优化的数据与 CI/CD 管道、交互式仪表板、基于约束的机器学习模型、Web 应用程序及综合文档。（团队领导力）",
+        "通过实施研究理念、组织原型开发并将其与众多云服务集成，开发了 MLCORE 产品（端到端 MLOps 平台），吸引了另外四个重要客户。（人际交往能力）"
+      ]
+    },
+    {
+      "role": "软件工程师",
+      "company": "Winjit Technologies",
+      "location": "纳西克，印度",
+      "from_date": "2020年1月",
+      "to_date": "2022年6月",
+      "description": [
+        "构建了10多个用于实时人工智能数据处理的 RESTful API，并开发了30多个低延迟响应式 UI React 功能",
+        "优化了大规模 MySQL、PostgreSQL 数据库，加速了人工智能模型训练和实时推理的数据访问",
+        "通过创新具有动态表单重新配置和可定制 CSS 功能的数据驱动 UI 框架，将开发效率提高了8倍。",
+        "设计了10多个 RESTful API 架构和分布式服务；设计了30多个低延迟响应式 UI/UX 应用程序功能，具备高质量 Web 架构；管理和优化了大规模数据库。（系统设计）",
+        "发起并设计了一种用于动态表单生成的标准化解决方案，具备可定制 CSS 功能，将开发时间减少了8倍；领导并与12人组成的跨职能团队协作。（创意生成）"
+      ]
+    },
+    {
+      "role": "深度学习工程师",
+      "company": "Automation Teknix",
+      "location": "浦那，印度",
+      "from_date": "2019年9月",
+      "to_date": "2020年1月",
+      "description": [
+        "开发了基于 SSD 和 MobileNetV2 的轻量级物体识别引擎，将移动使用的计算成本降低了30%",
+        "使用 TensorFlow 和 OpenCV 精简了 CNN 模型以改进图像处理，将生产中的调查误差减少了22%",
+        "通过使用 TensorFlow 和 OpenCV 精简 CNN 模型以改进图像处理，将生产中的调查误差减少了22%。",
+        "利用带有 MobileNetV2 架构的 SSD 算法设计了一种低计算成本的轻量级物体识别引擎，将调查误差减少了22%。（问题识别）",
+        "进行了彻底的初步研究；原型化了神经网络流程；构思了概念验证 (POC)、模型训练和监控。这使得准确率提高了7%，推理时间减少了2倍。（实验设计）"
+      ]
+    },
+    {
+      "role": "研究实习生",
+      "company": "IMATMI",
+      "location": "新泽西州罗宾斯维尔 (远程)",
+      "from_date": "2019年3月",
+      "to_date": "2019年8月",
+      "description": [
+        "开展研究并开发了一系列机器学习和统计模型，以设计分析工具并简化人力资源流程，优化人才管理系统以提高效率。",
+        "为员工创建了“目标和行动计划生成”工具，考虑其弱点以促进职业成长。",
+        "实施了一个自动化系统来识别即将开展项目的“最佳匹配员工”，改善了项目成果并为管理者优化了资源分配。"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "计算机科学硕士 - 论文方向",
+      "university": "亚利桑那州立大学，坦佩，美国",
+      "from_date": "2023年8月",
+      "to_date": "2025年5月",
+      "courses": [
+        "统计机器学习",
+        "运营深度学习",
+        "软件验证、确认和测试",
+        "人工智能安全与评估",
+        "社交媒体挖掘",
+        "知识表示与推理算法",
+        "软件安全"
+      ]
+    },
+    {
+      "degree": "电子与通信工程学士",
+      "university": "浦那计算机技术学院，浦那，印度",
+      "from_date": "2015年7月",
+      "to_date": "2019年6月",
+      "courses": [
+        "数据结构与算法",
+        "面向对象编程",
+        "操作系统",
+        "系统编程",
+        "计算机网络",
+        "人工智能",
+        "机器学习",
+        "数字视频与图像处理"
+      ]
+    }
+  ],
+  "skill_section": [
+    {
+      "name": "编程语言",
+      "skills": [
+        "Python",
+        "JavaScript/TypeScript",
+        "C#",
+        "C++",
+        "SQL",
+        "Java",
+        "Bash",
+        "HTML",
+        "CSS"
+      ]
+    },
+    {
+      "name": "机器学习/人工智能",
+      "skills": [
+        "PyTorch",
+        "TensorFlow",
+        "scikit-learn",
+        "LangChain",
+        "LangGraph",
+        "OpenCV",
+        "Pandas",
+        "MLflow",
+        "Databricks"
+      ]
+    },
+    {
+      "name": "生成式人工智能与系统",
+      "skills": [
+        "RAG (检索增强生成)",
+        "大语言模型评估",
+        "微调",
+        "提示工程",
+        "代理式人工智能设计",
+        "MLOps",
+        "可观测性",
+        "Kafka"
+      ]
+    },
+    {
+      "name": "云计算/DevOps",
+      "skills": [
+        "AWS (Bedrock, Lambda, S3, CloudWatch API Gateway, Cognito)",
+        "GCP",
+        "Azure",
+        "Docker",
+        "Kubernetes",
+        "Git"
+      ]
+    },
+    {
+      "name": "全栈开发",
+      "skills": [
+        "React",
+        "Node.js",
+        "Flask",
+        "FastAPI",
+        ".NET",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Terraform"
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "title": "拼写错误会造成危害吗？不完美输入对大语言模型安全的影响",
+      "venue": "SBP-BRiMS 2025",
+      "from_date": "2024年9月",
+      "to_date": "2025年8月",
+      "link": null,
+      "description": [
+        "系统研究了提示扰动下的大语言模型安全性；引入了安全翻转率，并在14种扰动类型和11种伤害类别上评估了5个模型——微小的拼写错误/改写在30%的情况下会翻转安全性",
+        "发布了用于感知扰动的安全评估和鲁棒对齐工具的开源框架和增强管道"
+      ]
+    },
+    {
+      "title": "基于大语言模型的个性化简历生成管道",
+      "venue": "ACM SIGIR 2024",
+      "from_date": "2023年8月",
+      "to_date": "2024年7月",
+      "link": "https://dl.acm.org/doi/10.1145/3626772.3657680",
+      "description": [
+        "撰写并发表了一项关于利用大语言模型优化用户个性化的机器学习管道的研究。",
+        "提出了新颖的用户个性化指标，为人工智能增强的简历评估设立了基准。",
+        "发布了一个集成信息检索和网络爬虫的开源 Python 库；已被1000多名用户使用。"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "用于媒体搜索的多模态人工智能系统",
+      "type": "黑客松",
+      "link": "https://devpost.com/software/team-soul-1fjgwo",
+      "resources": [],
+      "from_date": "2024年10月",
+      "to_date": "2024年10月",
+      "description": [
+        "凭借跨视频/音频/图像的内容搜索赢得大数据奖；存储在 Postgres 中使媒体搜索速度提高了92%",
+        "实施了一个跨视频/音频/图像的内容搜索系统，使用 Postgres 数据库，使媒体搜索速度提高了92%",
+        "开发了一个用于媒体搜索的多模态人工智能系统，使用 AWS、CLIP 和向量数据库，使搜索速度提高了92%。",
+        "在 Python FAST API 和 Angular 开发中获得大数据奖，提供了高效的数据访问和检索。",
+        "将每种文件类型的数据转换并存储为向量嵌入，确保了低延迟搜索能力。",
+        "使用 BERT、OCR、ResNet50 和图像描述等机器学习技术来解析图像特征。",
+        "贡献于 Elasticsearch 的实现，实现了毫秒级响应时间的极速搜索响应。"
+      ]
+    },
+    {
+      "name": "利用物联网传感器数据进行森林火灾检测",
+      "type": "工业项目",
+      "link": "https://github.com/OmdenaAI/Dryad",
+      "resources": [],
+      "from_date": "2021年9月",
+      "to_date": "2022年1月",
+      "description": [
+        "在边缘设备上实施了 TabNet 分类器模型，准确率达到98.7%，使用了 AWS、TinyML、Docker、Redis 和 Celery",
+        "利用 SMOTE 和超参数调优来平衡数据并优化召回率，将检测火灾的误差减少到7分钟内",
+        "通过使用 SMOTE 和超参数调优来平衡数据并优化召回率，将检测森林火灾的误差时间减少了7分钟。",
+        "设计了一种 TabNet 分类器模型，通过物联网传感器数据检测森林火灾的准确率达到98.7%，并使用 TinyML、Docker、Redis 和 Celery 等技术部署在 AWS 和边缘设备“Silvanet 野火传感器”上。",
+        "检查并利用多种性能指标（召回率、F2 分数、灵敏度、特异度等）以减少高第二类错误。",
+        "执行了模型探索、分析和优化。"
+      ]
+    },
+    {
+      "name": "生成式人工智能的能力与边界探索 - 人文领域提示工程黑客松",
+      "type": "黑客松",
+      "link": "https://www.linkedin.com/pulse/exploring-depths-ai-story-writing-prompt-engineering-hackathon-wbqwc",
+      "from_date": "2023年10月",
+      "to_date": "2023年10月",
+      "description": [
+        "在精心打造的人工智能角色中获得亚军，以探索大语言模型的微妙上下文理解能力，并创造人机之间的创新协作。",
+        "通过创新方法解决了叙事流畅性、简洁性、情感深度和幻觉等方面的局限性。",
+        "展示了创造性思维以及在黑客松期间驾驭复杂任务和适应不断变化的需求的能力。"
+      ]
+    },
+    {
+      "name": "股票市场分析",
+      "type": "实习项目",
+      "link": "https://github.com/Ztrimus/Stock-Market-Analysis",
+      "from_date": "2018年12月",
+      "to_date": "2019年2月",
+      "description": [
+        "进行了深入的探索性数据分析 (EDA) 并利用数据可视化技术进行全面的股票市场分析。在多样化的时间序列股票上实施了一系列统计和机器学习模型以提取洞察和预测。在“聚类和多元化分析”上将性能提高了27%。"
+      ]
+    },
+    {
+      "name": "自主监控监测系统",
+      "type": "项目",
+      "link": "",
+      "from_date": "2019年2月",
+      "to_date": "2019年6月",
+      "description": [
+        "在一个学院赞助的项目中，我构建了一个监控引擎，通过构建包含闭路电视 footage 数据处理、人脸检测、姿态和动作识别的计算机视觉管道（使用 OpenCV、MediaPipe、Tensorflow、MLFlow 和 Flask）来检测和警示校园内的可疑行为。最后，我们将其部署在学院区域内。"
+      ]
+    },
+    {
+      "name": "语音情绪识别",
+      "type": "项目",
+      "link": "https://github.com/Ztrimus/speech-emotion-recognition",
+      "from_date": "2018年11月",
+      "to_date": "2019年2月",
+      "description": [
+        "通过结合 CNN 和 LSTM 网络研究和优化了现有的情绪检测方法。通过分析音频信号特征（MFCC、ZCR、音高和色度）发现了影响情绪的语音属性。",
+        "使用自编码器技术压缩音频数据以避免数据丢失。因此，我们将语音模型的准确率提高了31%。使用的工具包括 PyTorch、Librosa、puAudioAnalysis 和 Tensorboard。"
+      ]
+    },
+    {
+      "name": "归家：动物栖息地组织",
+      "type": "项目",
+      "link": "",
+      "from_date": "2018年8月",
+      "to_date": "2019年1月",
+      "description": [
+        "开发了一个自定义的动物识别和分类模型，使用 Faster R-CNN 架构在模拟环境中识别动物及其栖息地，并将其集成到 Firebird V ATMEGA2560 机器人中（我们对其进行了定制以将动物放入栖息地）。优化了“区域建议网络”组件，使处理时间减少了35%。"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "深度学习专项课程",
+      "by": "DeepLearning.AI, Coursera Inc.",
+      "link": "https://www.coursera.org/account/accomplishments/specialization/G3WPNWRYX628"
+    },
+    {
+      "name": "面向人工智能工程师和数据科学家的 MLOps",
+      "by": "Omdena Inc.",
+      "link": "https://drive.google.com/file/d/1fh4AEscb0P82nfoaA-muWMzmFngzyk2g/view"
+    },
+    {
+      "name": "Microsoft Azure 基础知识",
+      "by": "Udemy",
+      "link": "https://www.udemy.com/certificate/UC-37e943d1-e7f7-4d27-a1e4-e799aef7013b/"
+    },
+    {
+      "name": "服务器端后端开发",
+      "by": "香港科技大学",
+      "link": "https://www.coursera.org/account/accomplishments/verify/TYMQX23D4HRQ"
+    },
+    {
+      "name": "前端 Web UI 框架和工具",
+      "by": "香港科技大学",
+      "link": "https://www.coursera.org/account/accomplishments/verify/TW8MA6MEXSCZ"
+    }
+  ],
+  "achievements": [
+    "在大学和专业层面赢得了10多次黑客松和编程竞赛。",
+    "在“2023年人文领域提示工程黑客松”中获得亚军",
+    "在 Winjit Technologies 因出色表现获得“Extra Miller - 2021”奖。",
+    "机器学习俱乐部主席：领导一个20人的团队完成项目，并被评为“年度最佳项目”。",
+    "2018年 E-yantra 机器人竞赛决赛选手 - 印度理工学院孟买分校 (IITB)。",
+    "PICT 艺术圈舞蹈部负责人：凭借最佳舞蹈编排赢得“2019年 Firodiya 戏剧比赛”。",
+    "在多个获奖的邦级戏剧比赛中表演，并三次获得最佳组织团队奖。",
+    "2016年 NSS（PICT 国家社区服务小组）活跃成员。"
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "personal": {
+    "name": "SAURABH BHAUSAHEB ZINJAD",
+    "phone": "480-913-5544",
+    "email": "saurabhzinjad@gmail.com",
+    "birthdate": "1995年8月",
+    "politics": "群众",
+    "hometown": "印度马哈拉施特拉邦",
+    "photo": "\"C:\\Users\\21080\\Desktop\\报名照片.jpg\""
+  },
+  "work_experience": [
+    {
+      "role": "高级机器学习工程师",
+      "company": "Tiger Analytics",
+      "location": "印度班加罗尔",
+      "from_date": "2022年6月",
+      "to_date": "2023年7月",
+      "description": [
+        "通过使用Python、PySpark和Databricks训练和优化预测性机器学习模型并构建可扩展的数据管道，使客户收入增加了18%。",
+        "设计了一个多云模型监控平台，用于生命周期跟踪/警报，支持了10多个客户的采用。",
+        "领导一个由8名分析师组成的团队，主导开发了宠物护理行业MSP价值优化的数据与CI/CD管道、交互式仪表板、基于约束的机器学习模型、Web应用程序及综合文档。"
+      ]
+    },
+    {
+      "role": "软件工程师",
+      "company": "Winjit Technologies",
+      "location": "印度浦那",
+      "from_date": "2020年1月",
+      "to_date": "2022年6月",
+      "description": [
+        "构建了10多个用于实时人工智能数据处理的RESTful API，并开发了30多个低延迟响应式的UI React功能。",
+        "优化了大规模MySQL和PostgreSQL数据库，加速了人工智能模型训练和实时推理的数据访问。",
+        "通过创建具有动态表单重新配置和可定制CSS功能的数据驱动UI框架，将开发效率提高了8倍，并与12人的跨职能团队协作。"
+      ]
+    },
+    {
+      "role": "研究实习生",
+      "company": "IMATMI, Robbinsville",
+      "location": "新泽西 (远程)",
+      "from_date": "2019年3月",
+      "to_date": "2019年8月",
+      "description": [
+        "开展研究并开发了一系列机器学习和统计模型，旨在设计分析工具并简化人力资源流程，优化人才管理系统以提高效率。",
+        "创建了员工'目标与行动计划生成'工具，综合考虑员工的弱点以促进职业成长。",
+        "实施自动化系统来识别即将开展项目的'最佳匹配员工'，改善了项目成果并为管理者优化了资源分配。"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "用于媒体搜索的多模态人工智能系统",
+      "type": "黑客松",
+      "resources": [],
+      "from_date": "2024年10月",
+      "to_date": "2024年10月",
+      "description": [
+        "通过开发一个跨视频/音频/图像的内容搜索系统，使用Postgres数据库实现了92%的媒体搜索速度提升。",
+        "利用AWS、CLIP和向量数据库技术，构建了一个高效的多模态人工智能系统，将搜索响应时间缩短至毫秒级。",
+        "在Python FAST API和Angular框架中实现了高效的数据访问和检索功能，显著提高了系统的性能和用户体验。"
+      ]
+    },
+    {
+      "name": "利用物联网传感器数据进行森林火灾检测",
+      "type": "工业项目",
+      "resources": [],
+      "from_date": "2021年9月",
+      "to_date": "2022年1月",
+      "description": [
+        "在边缘设备上实施了TabNet分类器模型，准确率达到98.7%，并通过TinyML、Docker、Redis和Celery技术部署在AWS和Silvanet野火传感器上。",
+        "通过SMOTE和超参数优化平衡数据并提高召回率，将检测森林火灾的误报时间减少到7分钟内。",
+        "执行了模型探索、分析和优化，确保系统的高性能和可靠性。"
+      ]
+    },
+    {
+      "name": "生成式人工智能的能力与边界探索 - 人文领域提示工程黑客松",
+      "type": "黑客松",
+      "resources": [],
+      "from_date": "2023年10月",
+      "to_date": "2023年10月",
+      "description": [
+        "通过精心设计的人工智能角色，探索大语言模型的微妙上下文理解能力，并创建了人机之间的创新协作模式。",
+        "通过创新方法解决了故事流畅性、简洁性、情感深度和幻想等方面的局限性，提升了整体内容质量。",
+        "展示了创造性思维以及在黑客松期间驾驭复杂任务和适应不断变化需求的能力。"
+      ]
+    }
+  ],
+  "skill_section": [
+    {
+      "name": "编程语言",
+      "skills": [
+        "Python",
+        "JavaScript/TypeScript",
+        "C#",
+        "SQL"
+      ]
+    },
+    {
+      "name": "后端开发框架",
+      "skills": [
+        "Django",
+        "FastAPI",
+        "Flask"
+      ]
+    },
+    {
+      "name": "数据库",
+      "skills": [
+        "MySQL",
+        "PostgreSQL",
+        "Redis"
+      ]
+    },
+    {
+      "name": "云与 DevOps",
+      "skills": [
+        "AWS (Bedrock, Lambda, S3, CloudWatch, API Gateway, Cognito)",
+        "Docker",
+        "Kubernetes"
+      ]
+    },
+    {
+      "name": "消息队列",
+      "skills": [
+        "Kafka",
+        "RabbitMQ"
+      ]
+    },
+    {
+      "name": "其他相关技能",
+      "skills": [
+        "RESTful API 设计",
+        "微服务架构",
+        "性能优化",
+        "代码审查",
+        "团队合作"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "计算机科学硕士 - 论文方向",
+      "university": "亚利桑那州立大学, 坦佩, 美国",
+      "from_date": "2023 年 8 月",
+      "to_date": "2025 年 5 月",
+      "gpa": "3.8/4.0",
+      "honors": "院长名单优秀学生, 研究生奖学金",
+      "courses": [
+        "统计机器学习",
+        "软件验证、确认和测试",
+        "人工智能安全与评估",
+        "社交媒体挖掘",
+        "知识表示与推理算法"
+      ]
+    },
+    {
+      "degree": "电子与通信工程学士",
+      "university": "浦那计算机技术学院, 浦那, 印度",
+      "from_date": "2015 年 7 月",
+      "to_date": "2019 年 6 月",
+      "gpa": "3.6/4.0",
+      "honors": "优秀毕业生, 学术卓越奖",
+      "courses": [
+        "数据结构与算法",
+        "面向对象编程",
+        "操作系统",
+        "系统编程",
+        "计算机网络",
+        "人工智能",
+        "机器学习",
+        "数字视频与图像处理"
+      ]
+    }
+  ],
+  "keywords": "Python 后端开发, Django, FastAPI, 数据库建模, 性能调优, RESTful API, 微服务化, Docker, Kubernetes, 代码审查, 团队合作, 技术热情"
+}

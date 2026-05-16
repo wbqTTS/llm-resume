@@ -9,7 +9,7 @@ Copyright (c) 2023 Saurabh Zinjad. All rights reserved | GitHub: Ztrimus
 """
 
 import argparse
-from zlm import AutoApplyModel
+from wbq import AutoApplyModel
 
 
 def create_resume_cv(url, master_data, api_key, provider, model, downloads_dir):

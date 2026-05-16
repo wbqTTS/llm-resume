@@ -1,0 +1,117 @@
+{
+  "personal": {
+    "name": "王碧强",
+    "birthdate": "2003.11",
+    "phone": "19559098287",
+    "politics": "共青团员",
+    "email": "2108095381@qq.com",
+    "hometown": "福建福州",
+    "photo": "C:/Users/21080/Desktop/profile_picture.jpg",
+
+    "title": "我构建解决现实世界问题的人工智能系统。",
+    "summary": "多才多艺的工程师，拥有6年开发可投入生产的机器学习解决方案和全栈应用程序的经验。管理从设计到部署及云环境优化的端到端管道。热衷于推进人工智能基础设施、微调基础模型，并在全球范围内提供可扩展且具成本效益的解决方案。",
+    "media": {
+      "linkedin": "https://linkedin.com/in/saurabhzinjad",
+      "github": "https://github.com/Ztrimus",
+      "medium": "https://ztrimus.medium.com",
+      "devpost": "https://devpost.com/Ztrimus"
+    }
+  },
+  "education": [
+    {
+      "university": "福州大学(211)",
+      "degree": "计算机科学与技术（实验班）",
+      "from_date": "2022.09",
+      "to_date": "2026.06",
+      "gpa": "3.66/4.00",
+      "honors": "第十四届全国大学生数学竞赛省一等奖（同专业前三）、第三十三届全国大学生数学建模竞赛省二等奖、第十六届电工杯数学建模省三等奖、校三等奖学金（三次）",
+      "courses": [
+        "操作系统(92)",
+        "计算机组成原理(91)",
+        "数据库系统原理(90)",
+        "概率论与数理统计(98)",
+        "离散数学(96)",
+        "线性代数(93)"
+      ]
+    }
+  ],
+  "work_experience": [
+    {
+      "role": "人工智能/机器学习工程师 II",
+      "company": "菲尼克斯大学 (University of Phoenix)",
+      "location": "美国",
+      "from_date": "2025年2月",
+      "to_date": "至今",
+      "description": [
+        "构建了生成式人工智能 + 可解释性工具（LangGraph + OpenAI），用于处理非结构化数据并自动解释复杂的学术/财务计算，将顾问支持能力提高了6倍",
+        "将组织知识库与大语言模型集成，构建管道以提取代码逻辑并转化为逐步解释，加速了入职流程并提高了开发人员生产力"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "医院综合管理平台",
+      "type": "全栈开发",
+      "from_date": "2024.10",
+      "to_date": "2024.12",
+      "description": [
+        "技术栈：Spring Boot 2.7 + MyBatis-Plus + MySQL + Redis + Vue 3 + Element Plus + ECharts + WebSocket",
+        "采用Spring Boot+MyBatis-Plus构建动态查询引擎，通过Redis缓存提升查询性能70%",
+        "效期预警使药品报废率降低28%，病历调阅效率提升60%"
+      ]
+    },
+    {
+      "name": "DHR架构流量检测系统",
+      "type": "网络安全",
+      "from_date": "2025.5",
+      "to_date": "2025.6",
+      "description": [
+        "开发基于随机森林（准确率98.2%）和支持向量机（检测延迟15ms）的异构检测模型组",
+        "对接OpenFlow控制器实现攻击自动阻断，累计拦截DDoS攻击5000+"
+      ]
+    }
+  ],
+  "skill_section": [
+    {"name": "编程语言", "skills": ["C", "C++", "Python", "Java", "PostgreSQL", "Shell script"]},
+    {"name": "开发框架", "skills": ["SpringBoot", "SpringMVC", "Mybatis/Mybatis-plus", "Vue"]},
+    {"name": "数据库", "skills": ["MySQL", "PostgreSQL", "Redis"]},
+    {"name": "Linux操作", "skills": ["Linux常用命令", "网络配置"]},
+    {"name": "办公软件", "skills": ["Excel", "Word", "PPT"]}
+  ],
+  "social_practice": [
+    {
+      "role": "思政课程实践小组主要成员",
+      "description": ["负责调研居民消费行为，发现63%居民消费方式已从线下转向'社区团购+直播电商'新模式。"]
+    },
+    {
+      "role": "院红十字会成员",
+      "description": ["期间进行了若干次志愿活动。"]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "深度学习专项课程",
+      "date": "2024.03",
+      "by": "DeepLearning.AI"
+    },
+    {
+      "name": "服务器端后端开发",
+      "date": "2023.12",
+      "by": "香港科技大学"
+    }
+  ],
+  "achievements": [
+    {
+      "name": "第十四届全国大学生数学竞赛省一等奖",
+      "date": "2023.12"
+    },
+    {
+      "name": "第三十三届全国大学生数学建模竞赛省二等奖",
+      "date": "2024.09"
+    },
+    {
+      "name": "第十六届电工杯数学建模省三等奖",
+      "date": "2024.05"
+    }
+  ]
+}

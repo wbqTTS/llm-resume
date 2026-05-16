@@ -1,0 +1,193 @@
+{
+  "personal": {
+    "name": "李四",
+    "phone": "138-0000-1111",
+    "email": "ming.zhang@example.edu",
+    "address": "北京市海淀区清华大学计算机系"
+  },
+  "research_interest": "自然语言处理、大语言模型、智能文档生成与信息抽取",
+  "education": [
+    {
+      "university": "清华大学",
+      "degree": "计算机科学与技术 博士",
+      "from_date": "2022.09",
+      "to_date": "至今",
+      "gpa": "3.9/4.0",
+      "advisor": "李明教授",
+      "dissertation": "基于大语言模型的智能简历生成与优化研究"
+    },
+    {
+      "university": "南京大学",
+      "degree": "计算机科学与技术 硕士",
+      "from_date": "2018.09",
+      "to_date": "2021.06",
+      "gpa": "3.8/4.0",
+      "advisor": "王华教授"
+    },
+    {
+      "university": "武汉大学",
+      "degree": "软件工程 学士",
+      "from_date": "2014.09",
+      "to_date": "2018.06",
+      "gpa": "3.7/4.0"
+    }
+  ],
+  "publications": [
+    {
+      "title": "Intelligent Resume Generation Based on Large Language Models: A Survey",
+      "journal": "ACL 2025 (CCF-A)",
+      "year": "2025",
+      "authors": ["Ming Zhang", "Li Ming", "Wang Hua"],
+      "type": "conference",
+      "authorship": "第一作者"
+    },
+    {
+      "title": "Prompt Engineering for Automated Document Generation: A Comprehensive Review",
+      "journal": "EMNLP 2024 (CCF-B)",
+      "year": "2024",
+      "authors": ["Ming Zhang", "Li Ming"],
+      "type": "conference",
+      "authorship": "第一作者"
+    },
+    {
+      "title": "A Two-stage Framework for Resume-Job Matching with Contrastive Learning",
+      "journal": "IEEE Transactions on Knowledge and Data Engineering",
+      "year": "2024",
+      "volume": "36(5)",
+      "pages": "2100-2112",
+      "authors": ["Ming Zhang", "Wang Hua", "Chen Wei"],
+      "type": "journal",
+      "authorship": "共同第一作者"
+    },
+    {
+      "title": "Knowledge-Enhanced Resume Parsing with Multi-task Learning",
+      "journal": "COLING 2022 (CCF-B)",
+      "year": "2022",
+      "authors": ["Ming Zhang", "Li Ming"],
+      "type": "conference",
+      "authorship": "第一作者"
+    }
+  ],
+  "research_experience": [
+    {
+      "role": "研究助理",
+      "project": "基于大语言模型的智能简历生成系统",
+      "institution": "清华大学智能计算实验室",
+      "location": "北京",
+      "from_date": "2023.01",
+      "to_date": "至今",
+      "description": [
+        "S: 现有简历生成工具缺乏针对不同岗位的个性化优化能力，导致用户简历与职位匹配度低。",
+        "T: 开发一套基于大语言模型的智能简历生成系统，实现从简历解析、内容优化到多风格PDF生成的全流程自动化。",
+        "A: 设计基于LangChain的提示词工程框架，支持教育背景、工作经历等6个模块的分别优化；实现字段级优化控制，用户可自主选择AI优化范围；构建基于LaTeX的动态模板渲染引擎，支持4种简历风格。",
+        "R: 系统生成简历与岗位描述的语义匹配度平均提升27.5%，用户测试反馈满意度达92%。"
+      ]
+    },
+    {
+      "role": "研究助理",
+      "project": "简历-职位智能匹配算法研究",
+      "institution": "南京大学数据科学实验室",
+      "location": "南京",
+      "from_date": "2021.07",
+      "to_date": "2022.12",
+      "description": [
+        "S: 传统关键词匹配方法无法捕捉简历与岗位描述之间的深层语义关联，匹配准确率低。",
+        "T: 设计基于对比学习的简历-职位匹配模型，提升人岗匹配的准确性。",
+        "A: 构建大规模简历-职位配对数据集，包含10万条标注样本；设计双塔编码器架构，引入难负样本挖掘策略；采用对比损失函数优化特征空间。",
+        "R: 在公开数据集上Top-1准确率达到78.5%，相比基线模型提升12.3%。"
+      ]
+    }
+  ],
+  "conference_presentations": [
+    {
+      "title": "Intelligent Resume Generation Based on Large Language Models",
+      "conference": "ACL 2025",
+      "location": "奥地利维也纳",
+      "date": "2025.07",
+      "type": "口头报告"
+    },
+    {
+      "title": "Prompt Engineering for Automated Document Generation",
+      "conference": "EMNLP 2024",
+      "location": "美国迈阿密",
+      "date": "2024.11",
+      "type": "海报展示"
+    }
+  ],
+  "honors": [
+    {
+      "name": "国家奖学金",
+      "institution": "教育部",
+      "date": "2023",
+      "level": "国家级"
+    },
+    {
+      "name": "清华大学优秀研究生",
+      "institution": "清华大学",
+      "date": "2024",
+      "level": "校级"
+    },
+    {
+      "name": "全国大学生数学建模竞赛一等奖",
+      "institution": "中国工业与应用数学学会",
+      "date": "2022",
+      "level": "国家级"
+    },
+    {
+      "name": "博士研究生国家奖学金",
+      "institution": "教育部",
+      "date": "2023",
+      "level": "国家级"
+    }
+  ],
+  "teaching_experience": [
+    {
+      "role": "助教",
+      "course": "机器学习",
+      "institution": "清华大学",
+      "date": "2024.02-2024.06",
+      "responsibilities": ["负责习题课教学（每周2课时）", "设计并批改作业（8次）", "协助期末考试命题与阅卷"]
+    },
+    {
+      "role": "助教",
+      "course": "自然语言处理",
+      "institution": "清华大学",
+      "date": "2023.09-2024.01",
+      "responsibilities": ["负责实验课指导", "开发课程实验框架", "组织期末项目答辩"]
+    }
+  ],
+  "technical_skills": {
+    "programming": ["Python", "Java", "C++", "SQL"],
+    "frameworks": ["PyTorch", "TensorFlow", "LangChain", "Spring Boot", "Vue"],
+    "tools": ["LaTeX", "Git", "Docker", "Linux"],
+    "languages": ["英语 (CET-6 580分，读写流利)", "中文 (母语)"]
+  },
+  "academic_service": [
+    {
+      "role": "审稿人",
+      "journal": "ACL Rolling Review",
+      "date": "2024-至今",
+      "description": "审稿4篇"
+    },
+    {
+      "role": "学生志愿者",
+      "conference": "ACL 2025",
+      "date": "2025.07",
+      "description": "协助会议组织与现场管理"
+    }
+  ],
+  "references": [
+    {
+      "name": "李明",
+      "title": "清华大学计算机系教授",
+      "email": "liming@tsinghua.edu.cn",
+      "phone": "010-6278xxxx"
+    },
+    {
+      "name": "王华",
+      "title": "南京大学计算机系教授",
+      "email": "wanghua@nju.edu.cn",
+      "phone": "025-8968xxxx"
+    }
+  ]
+}

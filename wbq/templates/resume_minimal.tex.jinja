@@ -1,0 +1,97 @@
+\documentclass{resume}
+
+\input{styles/style_minimal.tex}
+
+\begin{document}
+
+% ===== 个人信息 =====
+\name{\VAR{personal.name}}
+\contact{
+  \VAR{personal.phone} \quad | \quad
+  \VAR{personal.email}
+  \BLOCK{if personal.media.github}
+    \quad | \quad \VAR{personal.media.github}
+  \BLOCK{endif}
+  \BLOCK{if personal.media.linkedin}
+    \quad | \quad \VAR{personal.media.linkedin}
+  \BLOCK{endif}
+}
+
+% ===== 个人摘要 =====
+\BLOCK{if personal.summary}
+\summary{\VAR{personal.summary}}
+\BLOCK{endif}
+
+% ===== 教育背景（放在前面）=====
+\BLOCK{if education}
+\section{教育背景}
+\BLOCK{for edu in education}
+\educationentry{
+  \VAR{edu.university}
+}{
+  \VAR{edu.from_date} -- \VAR{edu.to_date}
+}{
+  \VAR{edu.degree}
+}{
+  \BLOCK{if edu.gpa}GPA: \VAR{edu.gpa}\BLOCK{endif}
+}
+\BLOCK{endfor}
+\BLOCK{endif}
+
+% ===== 工作经历 =====
+\BLOCK{if work_experience}
+\section{工作经历}
+\BLOCK{for job in work_experience}
+\entry{
+  \VAR{job.role}
+}{
+  \VAR{job.from_date} -- \VAR{job.to_date}
+}{
+  \VAR{job.company}, \VAR{job.location}
+}{
+  \begin{itemize}
+  \BLOCK{for d in job.description}
+    \item \VAR{d}
+  \BLOCK{endfor}
+  \end{itemize}
+}
+\BLOCK{endfor}
+\BLOCK{endif}
+
+% ===== 项目经历 =====
+\BLOCK{if projects}
+\section{项目经历}
+\BLOCK{for p in projects}
+\entry{
+  \VAR{p.name}
+}{
+  \VAR{p.from_date} -- \VAR{p.to_date}
+}{
+  \VAR{p.type}
+}{
+  \begin{itemize}
+  \BLOCK{for d in p.description}
+    \item \VAR{d}
+  \BLOCK{endfor}
+  \end{itemize}
+}
+\BLOCK{endfor}
+\BLOCK{endif}
+
+% ===== 专业技能 =====
+\BLOCK{if skill_section}
+\section{专业技能}
+\BLOCK{for s in skill_section}
+\skillsection{\VAR{s.name}}{\VAR{", ".join(s.skills)}}
+\BLOCK{endfor}
+\BLOCK{endif}
+
+% ===== 荣誉奖项 =====
+\BLOCK{if achievements}
+\section{荣誉奖项}
+\BLOCK{for a in achievements}
+\honorentry{\VAR{a.name}}{\VAR{a.date}} \\
+\BLOCK{endfor}
+\BLOCK{endif}
+
+\end{document}

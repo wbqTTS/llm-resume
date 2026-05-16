@@ -1,0 +1,91 @@
+% 声明这个文档类需要 LaTeX2e 版本（这是 LaTeX 的当前标准版本）
+\NeedsTeXFormat{LaTeX2e}
+
+% 声明这个文档类的名称是 "resume"（简历类）
+\ProvidesClass{resume}
+
+% ===== 基础文档类设置 =====
+% 基于标准的 article 文档类，设置基础参数：
+% 11pt = 基础字号为11磅
+% a4paper = 纸张大小为A4（210mm × 297mm）
+\LoadClass[11pt,a4paper]{article}
+
+% ===== 加载必要的宏包（引入各种功能）=====
+
+% geometry 宏包：用于设置页面边距
+\RequirePackage{geometry}
+% 设置页面四周边距都为2厘米
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+% xcolor 宏包：支持颜色定义和使用
+\RequirePackage{xcolor}
+
+% titlesec 宏包：自定义章节标题的格式
+\RequirePackage{titlesec}
+
+% enumitem 宏包：自定义列表（itemize/enumerate）的格式
+\RequirePackage{enumitem}
+
+% fontspec 宏包：XeLaTeX 字体选择功能，可以加载系统字体
+\RequirePackage{fontspec}
+
+% xeCJK 宏包：XeLaTeX 的中文支持，让中文能够正确排版
+\RequirePackage{xeCJK}
+
+% hyperref 宏包：生成超链接，PDF书签等
+\RequirePackage{hyperref}
+
+% fontawesome5 宏包：提供 FontAwesome 图标集（电话、邮箱、GitHub等图标）
+\RequirePackage{fontawesome5}
+
+% parskip 宏包：控制段落间距，让段落之间有空行
+\RequirePackage{parskip}
+
+% setspace 宏包：控制行距
+\RequirePackage{setspace}
+
+% array 宏包：增强表格功能
+\RequirePackage{array}
+
+% booktabs 宏包：提供更专业的表格横线（toprule, midrule, bottomrule）
+\RequirePackage{booktabs}
+
+% ===== 字体设置 =====
+% 设置英文主字体为 Times New Roman（Windows自带字体）
+\setmainfont{Times New Roman}
+
+% 设置中文主字体为 SimSun（宋体，Windows自带字体）
+\setCJKmainfont{SimSun}
+
+% ===== 基础颜色定义 =====
+% 定义三种基础颜色（RGB值：红,绿,蓝，每个分量0-255）
+\definecolor{heading}{RGB}{60, 60, 60}        % 标题颜色：深灰色
+\definecolor{subheading}{RGB}{100, 100, 100}  % 副标题颜色：中灰色
+\definecolor{rulecolor}{RGB}{200, 200, 200}   % 横线颜色：浅灰色
+
+% ===== 基础标题格式 =====
+% 使用 titlesec 宏包重新定义 \section 命令的格式
+\titleformat{\section}  % 要对 \section 命令重新定义格式
+  {\Large\bfseries\color{heading}}  % 格式：大号字体、粗体、标题颜色
+  {}{0em}{}  % 标签格式和间距（这里不使用标签）
+  [{\color{rulecolor}\titlerule[0.8pt]}]  % 标题后：浅灰色横线，线粗0.8pt
+
+% 设置 \section 的间距
+\titlespacing*{\section}  % 对 \section 设置间距
+  {0pt}  % 左边距为0
+  {16pt} % 上方间距16pt
+  {10pt} % 下方间距10pt
+
+% ===== 列表设置 =====
+% 使用 enumitem 宏包自定义 itemize 环境（无序列表）的格式
+\setlist[itemize]{
+  leftmargin=1.8em,  % 左边距1.8个字符宽度
+  itemsep=2pt,       % 列表项之间的间距
+  topsep=4pt,        % 列表与上下文的间距
+  parsep=0pt,        % 段落间距
+  label=\textbullet  % 列表项符号：标准实心圆点
+}
+
+% ===== 页眉页脚设置 =====
+% 设置页面样式为空（没有页眉页脚）
+\pagestyle{empty}

@@ -1,0 +1,162 @@
+% 声明这是一个样式文件，文件名为 style_classic.tex
+% \ProvidesFile 告诉 LaTeX 这个文件提供的内容，用于文件管理和调试
+\ProvidesFile{style_classic.tex}
+
+% ===== 颜色定义 =====
+% 覆盖在 resume.cls 中定义的三种颜色
+% 这里的颜色值会替代之前定义的同名颜色
+
+% 标题颜色：深灰蓝 (RGB: 44,62,80)
+% 这种颜色比基础深灰色更偏蓝，给人稳重、专业的商务感
+\definecolor{heading}{RGB}{44, 62, 80}
+
+% 副标题颜色：深灰色 (RGB: 80,80,80)
+% 用于次要文字，比标题颜色浅，形成层次感
+\definecolor{subheading}{RGB}{80, 80, 80}
+
+% 横线颜色：中灰色 (RGB: 160,160,160)
+% 用于分隔线，不要太显眼，起到视觉分隔作用即可
+\definecolor{rulecolor}{RGB}{160, 160, 160}
+
+% ===== 姓名命令定义 =====
+% 定义一个新命令 \name，接收1个参数
+% [1] 表示这个命令需要1个参数
+% #1 代表传入的第一个参数（即姓名文本）
+\newcommand{\name}[1]{%
+  % \begin{center} ... \end{center} 环境使内容居中显示
+  \begin{center}
+    % {\Huge \bfseries \color{heading} #1} 的含义：
+    % \Huge       = 超大号字体（比 \large 还大）
+    % \bfseries   = 粗体字
+    % \color{heading} = 使用刚才定义的 heading 颜色
+    % #1          = 传入的姓名参数
+    {\Huge \bfseries \color{heading} #1}
+  \end{center}
+  % 命令末尾的 } 结束命令定义
+  % 注意：这里没有 \vspace，姓名和联系方式之间由 contact 命令控制间距
+}
+
+% ===== 联系方式命令定义 =====
+% 定义一个新命令 \contact，接收1个参数（联系信息字符串）
+\newcommand{\contact}[1]{%
+  % 居中显示
+  \begin{center}
+    % {\small \color{subheading} #1} 的含义：
+    % \small = 小号字体（比正常文字小一号）
+    % \color{subheading} = 使用副标题颜色
+    % #1 = 传入的联系信息
+    {\small \color{subheading} #1}
+  \end{center}
+  % 添加16pt的垂直间距（在联系信息和下方横线之间）
+  \vspace{16pt}
+
+  % 绘制一条水平横线
+  % \color{rulecolor} = 使用横线颜色
+  % \hrule = 绘制水平线（默认占据整行宽度）
+  {\color{rulecolor}\hrule}
+
+  % 添加12pt的垂直间距（在横线和后续内容之间）
+  \vspace{12pt}
+}
+
+% ===== 工作/经历条目命令定义 =====
+% 这是最复杂的命令，实现两栏布局
+% 接收4个参数：
+% #1 = 职位/标题 (role)
+% #2 = 日期范围 (from_date -- to_date)
+% #3 = 公司/机构名称 (company)
+% #4 = 详细描述 (description 列表)
+\newcommand{\entry}[4]{%
+  % \noindent 取消首行缩进
+  \noindent
+
+  % 创建第一个 minipage（左栏），宽度占文本宽度的70%
+  % [t] 参数表示顶部对齐
+  \begin{minipage}[t]{0.7\textwidth}
+    % \textbf{\large \color{heading} #1} 的含义：
+    % \large = 大号字体（比正常大，比\Huge小）
+    % \textbf = 粗体
+    % \color{heading} = 标题颜色
+    % #1 = 职位名称
+    \textbf{\large \color{heading} #1} \\
+    % 换行后显示公司名称
+    % {\itshape \color{subheading} #3} 的含义：
+    % \itshape = 斜体
+    % \color{subheading} = 副标题颜色
+    % #3 = 公司名称
+    {\itshape \color{subheading} #3}
+  \end{minipage}
+
+  % \hfill 是水平弹性填充，把左右两栏推到两边
+  \hfill
+
+  % 创建第二个 minipage（右栏），宽度占25%
+  % 留出5%的间隙
+  \begin{minipage}[t]{0.25\textwidth}
+    % \raggedleft 让内容右对齐
+    % \textit{\color{subheading} #2} 的含义：
+    % \textit = 斜体文本
+    % \color{subheading} = 副标题颜色
+    % #2 = 日期范围
+    \raggedleft \textit{\color{subheading} #2}
+  \end{minipage}
+
+  % 添加6pt的垂直间距（在标题行和描述之间）
+  \vspace{6pt}
+
+  % 另起一行，显示描述内容
+  % \noindent 取消缩进
+  \noindent #4
+
+  % 添加12pt的垂直间距（在本条目和下个条目之间）
+  \vspace{12pt}
+}
+
+% ===== 教育条目命令定义 =====
+% 比工作经历简单，不需要两栏布局，采用行内格式
+% 接收4个参数（虽然第4个参数未使用，但保持接口一致）
+% #1 = 大学名称
+% #2 = 日期范围
+% #3 = 学位
+% #4 = 预留参数（可用于课程等，但此版本未使用）
+\newcommand{\education}[4]{%
+  \noindent
+
+  % 第一行：大学名称（左）和日期（右）
+  % \textbf{\color{heading} #1} = 粗体标题色的大学名称
+  % \hfill = 弹性填充，把日期推到右边
+  % \textit{\color{subheading} #2} = 斜体副标题色的日期
+  \textbf{\color{heading} #1} \hfill \textit{\color{subheading} #2} \\
+
+  % 第二行：学位（左对齐，斜体副标题色）
+  \textit{\color{subheading} #3} \\
+
+  % 添加8pt的垂直间距（在本条目和下个条目之间）
+  \vspace{8pt}
+
+  % 注意：第4个参数 #4 在这里没有使用
+  % 但在模板文件中可能会传入课程信息
+}
+
+% ===== 技能分类命令定义 =====
+% 用于显示技能分类和对应的技能列表
+% 接收2个参数：
+% #1 = 技能分类名称（如 "编程语言"）
+% #2 = 技能列表（已用逗号连接的字符串）
+\newcommand{\skillsection}[2]{%
+  \noindent
+
+  % \textbf{\color{heading} #1} 的含义：
+  % \textbf = 粗体
+  % \color{heading} = 标题颜色
+  % #1 = 技能分类名称
+  \textbf{\color{heading} #1}:
+
+  % {\color{subheading} #2} 的含义：
+  % \color{subheading} = 副标题颜色
+  % #2 = 技能列表字符串
+  {\color{subheading} #2} \\
+
+  % 添加4pt的垂直间距（在技能分类之间）
+  \vspace{4pt}
+}

@@ -1,0 +1,96 @@
+\documentclass{resume}
+
+\input{styles/style_classic.tex}
+
+\begin{document}
+% ===== 简历标题 =====
+\resumetitle
+% ===== 基本信息（带右侧头像，两列三行布局）=====
+\basicinfo{
+  \VAR{personal.name}
+}{
+  \VAR{personal.birthdate}
+}{
+  \VAR{personal.phone}
+}{
+  \VAR{personal.politics}
+}{
+  \VAR{personal.email}
+}{
+  \VAR{personal.hometown}
+}{
+  \VAR{personal.photo}
+}
+% ===== 教育背景 =====
+\BLOCK{if education}
+\section{教育背景}
+\BLOCK{for edu in education}
+\education{
+  \VAR{edu.university}
+}{
+  \VAR{edu.from_date} -- \VAR{edu.to_date}
+}{
+  \VAR{edu.degree}
+}{
+  \VAR{edu.gpa if edu.gpa else "无"}
+}{
+  \VAR{edu.honors if edu.honors else "无"}
+}{
+  \VAR{", ".join(edu.courses) if edu.courses else "无"}
+}{}
+\BLOCK{endfor}
+\vspace{-3pt}
+\BLOCK{endif}
+% ===== 工作经历 =====
+\BLOCK{if work_experience}
+\section{工作经历}
+\BLOCK{for job in work_experience}
+\entry{\VAR{job.role}}{\VAR{job.from_date} -- \VAR{job.to_date}}{\VAR{job.company}, \VAR{job.location}}{
+  \begin{itemize}
+  \BLOCK{for d in job.description}
+    \item \VAR{d}
+  \BLOCK{endfor}
+  \end{itemize}
+}
+\BLOCK{endfor}
+\vspace{-3pt}
+\BLOCK{endif}
+% ===== 项目经历 =====
+\BLOCK{if projects}
+\section{项目经历}
+\BLOCK{for p in projects}
+\projectentry{\VAR{p.name}}{\VAR{p.from_date} -- \VAR{p.to_date}}{\VAR{p.type}}{
+  \begin{itemize}
+  \BLOCK{for d in p.description}
+    \item \VAR{d}
+  \BLOCK{endfor}
+  \end{itemize}
+}
+\BLOCK{endfor}
+\vspace{-3pt}
+\BLOCK{endif}
+% ===== 专业技能 =====
+\BLOCK{if skill_section}
+\section{专业技能}
+\BLOCK{for s in skill_section}
+\skillsection{\VAR{s.name}}{\VAR{", ".join(s.skills)}}
+\BLOCK{endfor}
+\vspace{-5pt}
+\BLOCK{endif}
+
+
+% ===== 社会实践 =====
+\BLOCK{if social_practice}
+\section{社会实践}
+\BLOCK{for sp in social_practice}
+\socialentry{\VAR{sp.role}}{
+  \begin{itemize}
+  \BLOCK{for d in sp.description}
+    \item \VAR{d}
+  \BLOCK{endfor}
+  \end{itemize}
+}
+\BLOCK{endfor}
+\vspace{-3pt}
+\BLOCK{endif}
+\end{document}

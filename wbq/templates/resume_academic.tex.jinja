@@ -1,0 +1,173 @@
+\documentclass{resume}
+
+\input{styles/style_academic.tex}
+
+\begin{document}
+
+% ===== 个人信息 =====
+\name{\VAR{personal.name}}
+\contact{\VAR{personal.email} \quad | \quad \VAR{personal.phone} \quad | \quad \VAR{personal.address}}
+
+% ===== 研究兴趣 =====
+\BLOCK{if research_interest}
+\researchinterest{\VAR{research_interest}}
+\BLOCK{endif}
+
+% ===== 教育背景 =====
+\BLOCK{if education}
+\section{教育背景}
+\BLOCK{for edu in education}
+\educationentry{
+  \VAR{edu.degree}
+}{
+  \VAR{edu.university}
+}{
+  \VAR{edu.from_date} -- \VAR{edu.to_date}
+}{
+  \BLOCK{if edu.gpa}GPA: \VAR{edu.gpa}\BLOCK{endif}
+  \BLOCK{if edu.advisor} \quad 导师: \VAR{edu.advisor}\BLOCK{endif}
+}{
+  \BLOCK{if edu.dissertation}\VAR{edu.dissertation}\BLOCK{else}\BLOCK{endif}
+} \\
+\BLOCK{endfor}
+\BLOCK{endif}
+
+% ===== 出版物 =====
+\BLOCK{if publications}
+\section{出版物}
+\BLOCK{for p in publications}
+\publicationentry{
+  \VAR{p.authors}
+}{
+  ``\textit{\VAR{p.title}}''
+}{
+  \VAR{p.journal}
+}{
+  \VAR{p.year}
+}{
+  \BLOCK{if p.authorship}\VAR{p.authorship}\BLOCK{endif}
+} \\
+\BLOCK{endfor}
+\BLOCK{endif}
+
+% ===== 研究经历 =====
+\BLOCK{if research_experience}
+\section{研究经历}
+\BLOCK{for r in research_experience}
+\researchentry{
+  \VAR{r.role}
+}{
+  \VAR{r.project}
+}{
+  \VAR{r.institution}, \VAR{r.location}
+}{
+  \VAR{r.from_date} -- \VAR{r.to_date}
+}{
+  \begin{itemize}
+  \BLOCK{for d in r.description}
+    \item \VAR{d}
+  \BLOCK{endfor}
+  \end{itemize}
+}
+\BLOCK{endfor}
+\BLOCK{endif}
+
+% ===== 学术会议报告 =====
+\BLOCK{if conference_presentations}
+\section{学术会议报告}
+\BLOCK{for c in conference_presentations}
+\conferenceentry{
+  \VAR{c.title}
+}{
+  \VAR{c.conference}
+}{
+  \VAR{c.location}
+}{
+  \VAR{c.date}
+}{
+  \VAR{c.type}
+} \\
+\BLOCK{endfor}
+\BLOCK{endif}
+
+% ===== 荣誉与奖项 =====
+\BLOCK{if honors}
+\section{荣誉与奖项}
+\BLOCK{for h in honors}
+\honorentry{
+  \VAR{h.name}
+}{
+  \VAR{h.institution}
+}{
+  \VAR{h.date}
+} \\
+\BLOCK{endfor}
+\BLOCK{endif}
+
+% ===== 教学经历 =====
+\BLOCK{if teaching_experience}
+\section{教学经历}
+\BLOCK{for t in teaching_experience}
+\teachingentry{
+  \VAR{t.role}
+}{
+  \VAR{t.course}
+}{
+  \VAR{t.institution}
+}{
+  \VAR{t.date}
+}{
+  \begin{itemize}
+  \BLOCK{for r in t.responsibilities}
+    \item \VAR{r}
+  \BLOCK{endfor}
+  \end{itemize}
+}
+\BLOCK{endfor}
+\BLOCK{endif}
+
+% ===== 专业技能 =====
+\BLOCK{if technical_skills}
+\section{专业技能}
+\BLOCK{if technical_skills.programming}
+\skillsection{编程语言}{\VAR{", ".join(technical_skills.programming)}}
+\BLOCK{endif}
+\BLOCK{if technical_skills.frameworks or technical_skills.tools}
+\skillsection{框架与工具}{\VAR{", ".join(technical_skills.frameworks)} \VAR{", ".join(technical_skills.tools)}}
+\BLOCK{endif}
+\BLOCK{if technical_skills.languages}
+\skillsection{语言能力}{\VAR{", ".join(technical_skills.languages)}}
+\BLOCK{endif}
+\BLOCK{endif}
+
+% ===== 学术服务 =====
+\BLOCK{if academic_service}
+\section{学术服务}
+\BLOCK{for s in academic_service}
+\serviceentry{
+  \VAR{s.role}
+}{
+  \VAR{s.journal if s.journal else s.conference}
+}{
+  \VAR{s.date}
+} \\
+\BLOCK{endfor}
+\BLOCK{endif}
+
+% ===== 推荐人 =====
+\BLOCK{if references}
+\section{推荐人}
+\BLOCK{for r in references}
+\referenceentry{
+  \VAR{r.name}
+}{
+  \VAR{r.title}
+}{
+  \VAR{r.email}
+}{
+  \VAR{r.phone}
+} \\
+\BLOCK{endfor}
+\BLOCK{endif}
+
+\end{document}

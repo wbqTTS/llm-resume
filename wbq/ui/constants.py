@@ -1,0 +1,15 @@
+STEP_USER_CENTER = "👤 用户中心"
+STEP_DATA_INPUT = "📥 数据输入 (JD & 简历)"
+STEP_MODEL_CONFIG = "⚙️ 模型配置"
+STEP_GENERATION = "🚀 生成简历"
+STEP_RESULTS = "📊 结果分析"
+STEP_ADMIN_PANEL = "🛡️ 管理员面板"
+
+STEPS = [
+    STEP_USER_CENTER,
+    STEP_DATA_INPUT,
+    STEP_MODEL_CONFIG,
+    STEP_GENERATION,
+    STEP_RESULTS,
+    STEP_ADMIN_PANEL,
+]

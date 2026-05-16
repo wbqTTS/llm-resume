@@ -1,0 +1,48 @@
+{
+  "templates": [
+    {
+      "id": "minimal",
+      "name": "极简现代",
+      "name_en": "Minimalist",
+      "file_name": "resume_minimal.tex.jinja",
+      "preview_image": "static/previews/minimal.png",
+      "description": "干净利落，无衬线字体，黑白灰配色，突出技术能力",
+      "suitable_for": ["软件工程师", "后端开发", "数据分析师", "DevOps"],
+      "tags": ["技术", "现代", "简洁", "单栏"],
+      "features": ["无装饰线", "紧凑布局", "技能优先"]
+    },
+    {
+      "id": "creative",
+      "name": "创意活力",
+      "name_en": "Creative",
+      "file_name": "resume_creative.tex.jinja",
+      "preview_image": "static/previews/creative.png",
+      "description": "色彩点缀，色块分区，视觉层次分明，展现创意能力",
+      "suitable_for": ["UI/UX设计师", "产品经理", "市场运营", "创意总监"],
+      "tags": ["设计", "创意", "色彩", "视觉"],
+      "features": ["彩色标题", "色块背景", "视觉层次"]
+    },
+    {
+      "id": "academic",
+      "name": "学术严谨",
+      "name_en": "Academic",
+      "file_name": "resume_academic.tex.jinja",
+      "preview_image": "static/previews/academic.png",
+      "description": "传统衬线字体，强调研究成果，适合科研和高校岗位",
+      "suitable_for": ["博士生", "研究员", "高校教师", "科学家"],
+      "tags": ["学术", "传统", "研究", "论文"],
+      "features": ["Publication模块", "Research模块", "Awards模块"]
+    },
+    {
+      "id": "classic",
+      "name": "商务经典",
+      "name_en": "Classic",
+      "file_name": "resume_classic.tex.jinja",
+      "preview_image": "static/previews/classic.png",
+      "description": "稳重专业，蓝色点缀，适合金融、咨询、管理岗位",
+      "suitable_for": ["金融", "咨询", "管理", "传统行业"],
+      "tags": ["商务", "传统", "稳重", "专业"],
+      "features": ["蓝色主题", "经典布局", "通用性强"]
+    }
+  ]
+}

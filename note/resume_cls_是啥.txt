@@ -1,0 +1,62 @@
+这是一个非常敏锐且关键的问题！很多初学者都会误以为 LaTeX 像 Python 导入库一样，可以自动从系统任意路径找到文件。
+
+简单直接的回答：
+latex 编译器（如 xelatex）默认只在当前工作目录和系统标准库路径中查找文件。
+你的 resume.cls 是一个自定义的简历模板类文件，它不在 LaTeX 的标准安装包里。如果不把它复制到编译目录（output_dir），编译器在运行时会报错：! LaTeX Error: File 'resume.cls' not found.，导致编译直接失败。
+
+深度解析：为什么要复制 resume.cls？
+
+resume.cls 是什么？
+.cls (Class File)：它是 LaTeX 的“文档类”文件。
+你在 .tex 源码(resume.tex.jinja)的第一行通常写着：
+        documentclass{resume}
+
+这行代码告诉编译器：“我要用名为 resume 的格式规范来排版”。
+编译器收到指令后，会立即去寻找一个叫 resume.cls 的文件。如果找不到，它就不知道页面边距是多少、字体多大、章节标题怎么画，因此无法继续工作。
+
+编译器的查找机制 (Search Path)
+当你运行 xelatex output_resume.tex 时，编译器查找 .cls 文件的顺序通常是：
+当前目录：即 .tex 文件所在的文件夹（也就是你的 output_dir）。(优先级最高)
+TEXMF 本地树：用户手动安装到系统 LaTeX 库的路径（需要管理员权限运行 texhash 更新数据库）。
+TEXMF 系统树：LaTeX 发行版自带的标准库（如 article.cls, report.cls 都在这里）。
+
+问题所在：
+你的 resume.cls 存放在项目的 templates/ 文件夹里。
+你的 .tex 文件生成在 output_dir/ 文件夹里。
+它们不在同一个目录！
+除非你配置了复杂的环境变量 TEXINPUTS，否则编译器不会去 templates/ 目录下找文件。
+
+为什么选择“复制文件”而不是“配置路径”？
+虽然可以通过设置环境变量 TEXINPUTS 让编译器知道去 templates/ 找文件，但在工程实践中，复制文件（Copy Strategy）是更稳健的做法，原因如下：
+
+自包含性 (Self-Contained)：编译目录包含了所有必要的依赖（.tex, .cls, 图片等）。无论你把整个文件夹移动到另一台电脑，只要那台电脑有 LaTeX，就能直接编译，不需要关心原始项目结构。
+避免路径冲突：如果有多个任务同时运行，配置全局环境变量可能会导致混乱。每个任务在自己的输出目录里拥有一份独立的 .cls 副本，互不干扰。
+简化逻辑：代码逻辑清晰——“我要在这个目录编译，所以我把所有需要的东西都搬到这里”。
+
+形象比喻
+
+想象你要做一道菜（编译 PDF）：
+.tex 文件 = 菜谱（上面写着：“请使用特制酱料 resume 进行烹饪”）。
+resume.cls = 特制酱料（放在厨房柜子里 templates 处）。
+编译器 (xelatex) = 厨师。
+编译目录 (output_dir) = 灶台。
+
+如果不复制文件：
+你把菜谱（.tex）放在灶台上，让厨师开始做菜。厨师看到菜谱上说要用“特制酱料”，他只会伸手去灶台旁边找。如果灶台旁边没有，他就会大喊：“找不到酱料！没法做菜！”（编译报错）。他不会因为柜子里有就自动跑过去拿，除非你提前告诉他柜子在哪（配置环境变量）。
+
+复制文件的做法：
+在让厨师开始之前，你先把酱料从柜子里拿出来，放到灶台旁边。这样厨师一伸手就能拿到，菜就能顺利做出来。
+
+总结代码中的逻辑
+
+找到源文件 (在 templates 目录)
+source_cls = os.path.join(templates_path, "resume.cls")
+
+确定目标位置 (在编译目录，和 .tex 文件在一起)
+dest_cls = os.path.join(output_dir, "resume.cls")
+
+执行复制 ("把酱料搬到灶台旁")
+if os.path.exists(source_cls):
+    shutil.copy(source_cls, dest_cls)
+
+结论：这一步是必须的（除非你修改了系统级配置），它是为了让 LaTeX 编译器能在默认的搜索路径中找到自定义的模板文件，从而成功启动编译过程。

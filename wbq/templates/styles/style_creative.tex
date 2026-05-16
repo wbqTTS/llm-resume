@@ -1,0 +1,100 @@
+% ============================================================
+% 创意活力风格 - 双栏 minipage 版
+% ============================================================
+\ProvidesFile{style_creative.tex}
+
+% ===== 创意配色方案 =====
+\definecolor{primary}{RGB}{98, 0, 238}      % 电光紫
+\definecolor{secondary}{RGB}{255, 71, 87}   % 珊瑚橙
+\definecolor{dark}{RGB}{30, 30, 46}         % 深岩灰
+\definecolor{text}{RGB}{72, 72, 86}         % 正文灰色
+
+\setlength{\parindent}{0pt}
+
+% ===== 姓名设计 =====
+\newcommand{\name}[1]{%
+  \begin{center}
+    {\fontsize{36}{44}\selectfont \bfseries \color{primary} #1}
+  \end{center}
+  \vspace{4pt}
+  {\color{secondary}\rule{0.4\textwidth}{2pt}}
+  \vspace{8pt}
+}
+
+% ===== 联系方式行 =====
+\newcommand{\contactline}[1]{%
+  \begin{center}
+    {\small \color{text} #1}
+  \end{center}
+  \vspace{12pt}
+  {\color{primary!30}\hrule}
+  \vspace{12pt}
+}
+
+% ===== 带图标的联系方式项 =====
+\newcommand{\iconcontact}[2]{%
+  \faIcon{#1} \hspace{4pt} \textcolor{text}{#2}
+}
+
+% ===== 侧边栏区块标题 =====
+
+\newcommand{\sidebarsection}[1]{%
+  \noindent
+  \textcolor{primary}{\fontsize{18}{22}\selectfont\bfseries #1} \\[-6pt]
+  \textcolor{secondary}{\rule{0.8\linewidth}{1pt}} \\
+  \noindent
+}
+
+% ===== 侧边栏联系方式项 =====
+\newcommand{\sidebarcontact}[2]{%
+  \noindent
+  \textcolor{primary}{\faIcon{#1}} \hspace{6pt}
+  \textcolor{text}{\small #2} \\
+  \vspace{4pt}
+}
+
+% ===== 工作/项目条目 =====
+\newcommand{\entry}[4]{%
+  \noindent
+  \begin{minipage}[t]{0.7\linewidth}
+    \textbf{\large \color{text} #1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.25\linewidth}
+    \raggedleft \small \textcolor{text}{\itshape #2}
+  \end{minipage}
+  \vspace{2pt}
+
+  \noindent \textcolor{secondary}{\textbf{#3}}
+  \vspace{-6pt}
+
+  \noindent \small \textcolor{text}{#4}
+  \vspace{12pt}
+}
+
+% ===== 教育条目 =====
+\newcommand{\educationentry}[4]{%
+  \noindent
+  \begin{minipage}[t]{0.7\linewidth}
+    \textbf{\color{primary} #1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.25\linewidth}
+    \raggedleft \small \textcolor{text}{\itshape #2}
+  \end{minipage}
+  \vspace{2pt}
+
+  \noindent \textcolor{secondary}{#3}
+  \vspace{4pt}
+
+  \noindent \small \textcolor{text}{#4}
+  \vspace{8pt}
+}
+
+% ===== 重定义 section 标题 =====
+\titleformat{\section}
+  {\large\bfseries\color{primary}}
+  {}{0em}{}
+  [{\color{secondary}\rule{0.3\linewidth}{1pt}}]
+
+\titlespacing*{\section}{0pt}{16pt}{8pt}

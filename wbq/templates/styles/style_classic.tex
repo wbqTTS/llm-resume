@@ -1,0 +1,104 @@
+% 商务经典风格
+\ProvidesFile{style_classic.tex}
+
+% 覆盖颜色
+\definecolor{heading}{RGB}{0, 0, 0}          % 黑色
+\definecolor{subheading}{RGB}{44, 62, 80}    % 深灰蓝
+\definecolor{rulecolor}{RGB}{128, 128, 128}  % 中灰色
+
+% ===== 简历标题（紧凑版）=====
+\newcommand{\resumetitle}{%
+  \begin{center}
+    {\Huge \bfseries \color{heading} 个人简历}
+  \end{center}
+  \vspace{4pt}  % 减少间距
+  {\color{rulecolor}\hrule}
+  \vspace{1pt}  % 减少间距
+}
+
+% ===== 基本信息（带右侧头像，两列三行布局，紧凑版）=====
+\newcommand{\basicinfo}[7]{%
+  % #1: 姓名, #2: 出生年月, #3: 电话, #4: 政治面貌
+  % #5: 邮箱, #6: 籍贯, #7: 头像路径
+  \noindent
+  \begin{minipage}[b]{0.7\textwidth}
+    \begin{tabular}{@{} l l @{}}
+      \textbf{姓名}: #1 & \textbf{出生年月}: #2 \\
+      \textbf{电话}: #3 & \textbf{政治面貌}: #4 \\
+      \textbf{邮箱}: #5 & \textbf{籍贯}: #6 \\
+    \end{tabular}
+    % 减少垂直间距
+    \vspace{2pt}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.25\textwidth}
+    \raggedleft
+    \ifx&#7&%
+      % 头像路径为空，显示空白占位
+      \vspace{3.5cm}
+    \else
+      \includegraphics[width=2.5cm, height=3.5cm, keepaspectratio]{#7}
+    \fi
+  \end{minipage}
+
+  \vspace{6pt}  % 减少间距
+  {\color{rulecolor}\hrule}
+  \vspace{-2pt}  % 减少间距
+}
+
+% ===== 其他命令保持不变 =====
+\newcommand{\entry}[4]{%
+  \noindent
+  \textbf{\large \color{heading} #1} \hfill
+  {\small \textit{\color{subheading} #2}} \\
+  {\itshape \color{subheading} #3}
+  \vspace{-2pt}
+
+  \noindent {\small #4}
+  \vspace{-2pt}  % 减少间距
+}
+
+\newcommand{\education}[7]{%
+  \noindent
+  \textbf{\large \color{heading} #1} \hspace{1em}
+  {\itshape \color{subheading} #3} \hfill
+  {\small \textit{\color{subheading} #2}}
+  \vspace{-2pt}
+
+  \noindent {\small \textbf{GPA:} #4} \\
+  \noindent {\small \textbf{荣誉/奖项:} #5} \\
+  \noindent {\small \textbf{主修课程:} #6}
+  \vspace{-5pt}
+}
+
+\newcommand{\projectentry}[4]{%
+  \noindent
+  \textbf{\large \color{heading} #1} \hspace{1em}
+  {\itshape \color{subheading} #3} \hfill
+  {\small \textit{\color{subheading} #2}}
+  \vspace{1.5pt}
+  \noindent {\small #4}
+  \vspace{1.5pt}
+}
+
+\newcommand{\socialentry}[2]{%
+  \noindent
+  \textbf{\large \color{heading} #1} \hfill
+  \vspace{-5pt}
+  \noindent {\small #2}
+  \vspace{-5pt}  % 减少间距
+}
+
+\newcommand{\skillsection}[2]{%
+  {\parindent=0pt
+   \noindent
+   \textbf{\color{heading} #1}: {\color{subheading} #2}\par
+  }
+  \vspace{-2pt}
+}
+
+\newcommand{\keywordssection}[1]{%
+  \noindent
+  \textbf{\color{heading} 关键词}: {\color{subheading} #1} \\
+  \vspace{0pt}  % 减少间距
+}

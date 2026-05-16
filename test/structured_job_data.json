@@ -1,0 +1,44 @@
+{
+  "job_title": "AI开发工程师",
+  "job_purpose": "利用AI编程工具和大模型技术，快速交付全栈功能，设计可扩展系统架构，并将AI能力深度集成到数字政务、社区、旅游、应急等业务场景中，推动AI产品落地与技术创新。",
+  "keywords": [
+    "Python",
+    "FastAPI",
+    "Flask",
+    "Django",
+    "Vue.js",
+    "LLM",
+    "Prompt Engineering",
+    "RAG",
+    "PyTorch",
+    "TensorFlow",
+    "Hugging Face Transformers",
+    "Git",
+    "Docker",
+    "Linux",
+    "AI编程工具（Cursor/Windsurf/Copilot）"
+  ],
+  "job_duties_and_responsibilities": [
+    "高效产品交付：利用 Cursor、Windsurf 或 Copilot 等 AI 编程工具，快速构建从后端 Python 到前端 Vue 的全栈功能。",
+    "系统架构设计：设计可扩展的后端服务（FastAPI/Flask/Django）与响应式前端界面，确保代码在 AI 辅助生成下依然保持高可维护性。",
+    "AI 能力集成：将主流 LLM（OpenAI, Claude, DeepSeek 等）的能力集成到现有业务场景中，包括 Prompt 工程优化及 RAG 系统构建。",
+    "敏捷迭代：参与产品的快速验证，利用 AI 自动生成测试、文档和基础 UI，将创意从构思到上线的周期缩短至极致。"
+  ],
+  "required_qualifications": [
+    "熟练掌握 Python",
+    "有使用 FastAPI、Flask 或 Django 等框架开发后端服务的经验",
+    "熟悉 Vue.js（Vue 2/3），能独立开发响应式、组件化的前端界面",
+    "了解主流 AI 开发工具链，如 PyTorch/TensorFlow、Hugging Face Transformers 等",
+    "具备将 AI 模型部署为 Web 服务的能力（如通过 REST API、WebSocket 等）",
+    "熟悉 Git、Docker、Linux 等开发运维基础工具",
+    "本科及以上学历",
+    "无需经验（但需满足上述技能要求）"
+  ],
+  "preferred_qualifications": [
+    "有实际 AI 产品落地经验（如智能客服、AI 写作、图像生成、RAG 系统等）",
+    "熟悉大模型微调、提示工程（Prompt Engineering）或 Agent 开发",
+    "了解前端与后端的联调协作流程，具备全栈思维"
+  ],
+  "company_name": "福州领视网络科技有限公司",
+  "company_details": "福州领视网络科技有限公司成立于2014年，总部位于福州，是国内领先的人工智能智能体开发与解决方案提供商；连续获评国家高新技术企业、福建省专精特新及瞪羚企业；在人工智能与数字政务领域拥有60余项自主知识产权；主营业务覆盖AI+数字政务、AI+社区乡村、AI+数字旅游、AI+智慧应急，在福建、广东、广西、湖南、安徽等省份落地案例超1000个；公司倡导创新与技术驱动，注重持续学习成长及良好的工作氛围。"
+}

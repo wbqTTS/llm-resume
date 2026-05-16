@@ -1,0 +1,114 @@
+\ProvidesClass{resume}[2026/03/17 v1.6 Resume class - Fixed recursion bug]
+
+\LoadClass[10pt]{article}
+
+% ==== 字体 ====
+\RequirePackage{fontspec}
+\RequirePackage[UTF8, scheme=plain]{ctex}
+
+\setmainfont{Arial}[
+    BoldFont={Arial Bold},
+    ItalicFont={Arial Italic},
+    BoldItalicFont={Arial Bold Italic}
+]
+
+\renewcommand{\familydefault}{\sfdefault}
+
+% ==== 基础包 ====
+\RequirePackage[parfill]{parskip}
+\RequirePackage{array}
+\RequirePackage{ifthen}
+\RequirePackage{xcolor}
+\RequirePackage[left=0.4in, right=0.4in, top=0.35in, bottom=0.35in]{geometry}
+\RequirePackage{hyperref}
+\RequirePackage{tcolorbox}
+
+\IfFileExists{fontawesome5.sty}{
+    \RequirePackage{fontawesome5}
+}{
+    \RequirePackage{fontawesome}
+}
+
+\pagestyle{empty}
+
+% ==== 头部 ====
+\def \name#1{\def\@name{#1}}
+\def \@name {}
+\def \addressSep {$\diamond$}
+
+\let \@addressone \relax
+\let \@addresstwo \relax
+\let \@addressthree \relax
+
+\def \address #1{
+  \@ifundefined{@addresstwo}{
+    \def \@addresstwo {#1}
+  }{
+  \@ifundefined{@addressthree}{
+  \def \@addressthree {#1}
+  }{
+     \def \@addressone {#1}
+  }}
+}
+
+\def \printaddress #1{
+  \begingroup
+    \def \\ {\addressSep\ }
+    \centerline{#1}
+  \endgroup
+  \par
+  \addressskip
+}
+
+\def \printname {
+  \begingroup
+    \hfil{\MakeUppercase{\namesize\bf \@name}}\hfil
+    \nameskip\break
+  \endgroup
+}
+
+% ✅ 修复点：不再重定义 \document
+\AtBeginDocument{
+  \printname
+  \@ifundefined{@addressone}{}{\printaddress{\@addressone}}
+  \@ifundefined{@addresstwo}{}{\printaddress{\@addresstwo}}
+  \@ifundefined{@addressthree}{}{\printaddress{\@addressthree}}
+}
+
+% ==== Section ====
+\newenvironment{rSection}[1]{
+  \MakeUppercase{\textbf{#1}}
+  \sectionlineskip
+  \hrule
+  \begin{list}{}{\setlength{\leftmargin}{1.5em}}
+  \item[]
+}{
+  \end{list}
+}
+
+% ==== Subsection ====
+\newenvironment{rSubsection}[4]{
+  {\textbf{#1}} \hfill {#2}
+  \ifthenelse{\equal{#3}{}}{}{\\ \textbf{{\em #3}} \hfill \textbf{{\em #4}}}
+  \smallskip
+  \begin{list}{$\cdot$}{\leftmargin=0.75em}
+    \itemsep -0.4em \vspace{-0.75em}
+  }{
+  \end{list}
+}
+
+\newenvironment{rSubWork}[2]{
+  {\textbf{{\em #1}}} \hfill \textbf{{#2}}
+  \smallskip
+  \begin{list}{$\cdot$}{\leftmargin=0.75em}
+    \itemsep -0.4em \vspace{-0.75em}
+  }{
+  \end{list}
+}
+
+% ==== spacing ====
+\def\namesize{\Large}
+\def\addressskip{\smallskip}
+\def\sectionlineskip{\medskip}
+\def\nameskip{\bigskip}
+\def\sectionskip{\medskip}

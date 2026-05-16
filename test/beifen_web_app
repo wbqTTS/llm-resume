@@ -1,0 +1,557 @@
+'''
+-----------------------------------------------------------------------
+File: web_app.py (Wang Biqiang)
+Description: Job-LLM Resume Generator - Chinese Interface
+-----------------------------------------------------------------------
+'''
+import os
+import sys
+import json
+import base64
+import shutil
+import zipfile
+import platform
+import streamlit as st
+
+# 确保本地模块路径正确
+from zlm import AutoApplyModel
+from zlm.utils.utils import display_pdf, download_pdf, read_file, read_json
+from zlm.utils.metrics import jaccard_similarity, overlap_coefficient, cosine_similarity
+from zlm.variables import LLM_MAPPING
+
+# --- 初始化设置 ---
+print("正在检查 Playwright 依赖...")
+
+# 【修复】彻底解决 Windows 下 sudo 报错问题
+# 只有在非 Windows 系统下才运行 install-deps，Windows 不需要也不支持 sudo
+if platform.system() != "Windows":
+    os.system("playwright install")
+    os.system("sudo playwright install-deps")
+else:
+    # Windows 下只需要安装浏览器内核，不需要系统级依赖
+    print("检测到 Windows 系统，跳过 sudo 依赖安装步骤...")
+    os.system("playwright install")
+
+# 【修复】Streamlit menu_items 必须使用标准英文键，系统会自动翻译
+st.set_page_config(
+    page_title="智能简历系统",
+    page_icon="📑",
+    menu_items={
+        'Get help': 'https://www.youtube.com/watch?v=Agl7ugyu1N4',
+        'About': 'https://github.com/Ztrimus/job-llm',
+        'Report a bug': "https://github.com/Ztrimus/job-llm/issues",
+    },
+
+)
+
+
+# 每次运行时清理 output 目录，确保环境干净
+if os.path.exists("output"):
+    shutil.rmtree("output")
+
+def encode_tex_file(file_path):
+    """将 TEX 源文件和 cls 模板打包并 Base64 编码，用于 Overleaf 导入"""
+    try:
+        current_loc = os.path.dirname(__file__)
+        # 构建需要打包的文件列表：生成的 tex 文件 + 模板 cls 文件
+        file_paths = [
+            file_path.replace('.pdf', '.tex'),
+            os.path.join(current_loc, 'zlm', 'templates', 'resume.cls')
+        ]
+        zip_file_path = file_path.replace('.pdf', '.zip')
+
+        # 创建 ZIP 文件
+        with zipfile.ZipFile(zip_file_path, 'w') as zipf:
+            for f_path in file_paths:
+                if os.path.exists(f_path):
+                    # 写入文件，只保留文件名以便在 Overleaf 根目录显示
+                    zipf.write(f_path, os.path.basename(f_path))
+                else:
+                    print(f"警告：文件未找到，跳过打包：{f_path}")
+
+        # 读取并编码
+        with open(zip_file_path, 'rb') as zip_file:
+            zip_content = zip_file.read()
+
+        encoded_zip = base64.b64encode(zip_content).decode('utf-8')
+        return encoded_zip
+
+    except Exception as e:
+        st.error(f"打包文件时发生错误：{e}")
+        print(e)
+        return None
+
+def create_overleaf_button(resume_path):
+    """生成嵌入式的 Overleaf 'Edit' 按钮"""
+    tex_content = encode_tex_file(resume_path)
+    if not tex_content:
+        return
+
+    html_code = f"""
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Overleaf Button</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {{ background: transparent; }}
+            .btn-success {{ background-color: #17a645; border-color: #17a645; font-weight: bold; }}
+            .btn-success:hover {{ background-color: #148f3b; border-color: #148f3b; }}
+        </style>
+    </head>
+    <body style="background: transparent;">
+        <div style="max-height: 35px !important;">
+            <form action="https://www.overleaf.com/docs" method="post" target="_blank" height="20px">
+                <input type="text" name="snip_uri" style="display: none;"
+                    value="data:application/zip;base64,{tex_content}">
+                <input class="btn btn-success rounded-pill w-100 shadow-sm" type="submit" value="在 Overleaf 中编辑 🍃">
+            </form>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+    </html>
+    """
+    st.components.v1.html(html_code, height=45)
+
+try:
+    # --- 主界面标题 ---
+    st.header("打造 :green[人岗匹配] 的 :orange[个性化] 简历", divider='rainbow')
+    st.caption("跳过繁琐的写作，用 AI 助你拿到面试机会")
+
+    # --- 输入区域：职位描述 ---
+    col_text, col_url, _, _ = st.columns(4)
+    with col_text:
+        st.write("**职位描述来源**")
+    with col_url:
+        is_url_button = st.toggle('使用链接', False)
+
+    url, text = "", ""
+    if is_url_button:
+        url = st.text_input("输入招聘链接:", placeholder="例如：https://www.linkedin.com/jobs/view/...", label_visibility="collapsed")
+    else:
+        text = st.text_area("或直接粘贴职位描述文本:", max_chars=5500, height=200, placeholder="在此粘贴完整的职位描述 (JD)...", label_visibility="collapsed")
+
+    # --- 输入区域：用户上传 ---
+    file = st.file_uploader("上传您的简历或相关经历资料 (支持 PDF, JSON)", type=["json", "pdf"],
+                            help="推荐格式：JSON (结构化数据) 或 PDF (现有简历)")
+
+    # ==============================================================================
+    # [新增功能] 手动表单生成 JSON 模块
+    # 插入位置：在 uploaded_file = st.file_uploader(...) 之后
+    # ==============================================================================
+
+    # 1. 初始化 Session State 用于存储表单数据
+    if 'manual_resume_form' not in st.session_state:
+        st.session_state.manual_resume_form = {
+            "name": "",
+            "title": "",
+            "summary": "",
+            "phone": "",
+            "email": "",
+            "media": {"linkedin": "", "github": "", "medium": "", "devpost": ""},
+            "work_experience": [],
+            "education": [],
+            "skill_section": [],
+            "projects": [],
+            "certifications": [],
+            "achievements": []
+        }
+
+    # 2. 创建可折叠的表单区域
+    with st.expander("📝 没有现成简历？点击此处手动填写并生成 JSON", expanded=False):
+        st.markdown("""
+        > **使用说明**：填写下方基本信息，系统将生成标准的 JSON 文件。
+        > 下载后，您可以直接在上方的“上传您的简历”框中上传该文件，继续生成定制简历。
+        """)
+
+        form_data = st.session_state.manual_resume_form
+
+        # --- A. 基础信息 ---
+        st.subheader("1. 基础信息")
+        c1, c2 = st.columns(2)
+        form_data['name'] = c1.text_input("姓名 (Name)", value=form_data['name'], key="f_name")
+        form_data['title'] = c2.text_input("职业标题 (Title)", value=form_data['title'], key="f_title")
+        form_data['summary'] = st.text_area("个人总结 (Summary)", value=form_data['summary'], height=80,
+                                            key="f_summary")
+
+        c3, c4 = st.columns(2)
+        form_data['phone'] = c3.text_input("电话", value=form_data['phone'], key="f_phone")
+        form_data['email'] = c4.text_input("邮箱", value=form_data['email'], key="f_email")
+
+        st.markdown("**社交媒体链接**")
+        mc1, mc2, mc3, mc4 = st.columns(4)
+        if 'media' not in form_data: form_data['media'] = {}
+        form_data['media']['linkedin'] = mc1.text_input("LinkedIn", value=form_data['media'].get('linkedin', ''),
+                                                        key="f_li")
+        form_data['media']['github'] = mc2.text_input("GitHub", value=form_data['media'].get('github', ''), key="f_gh")
+        form_data['media']['medium'] = mc3.text_input("Medium/Blog", value=form_data['media'].get('medium', ''),
+                                                      key="f_md")
+        form_data['media']['devpost'] = mc4.text_input("Devpost", value=form_data['media'].get('devpost', ''),
+                                                       key="f_dp")
+
+        st.divider()
+
+        # --- B. 工作经历 (动态列表) ---
+        st.subheader("2. 工作经历")
+        jobs = form_data.get('work_experience', [])
+
+        if st.button("➕ 添加一段工作经历", key="btn_add_job"):
+            jobs.append({
+                "role": "", "company": "", "location": "",
+                "from_date": "", "to_date": "至今",
+                "description": [""]
+            })
+            st.session_state.manual_resume_form['work_experience'] = jobs
+            st.rerun()
+
+        for i, job in enumerate(jobs):
+            with st.container(border=True):
+                st.markdown(f"**经历 #{i + 1}**")
+                c1, c2 = st.columns([2, 1])
+                job['role'] = c1.text_input("职位角色", value=job.get('role', ''), key=f"f_job_role_{i}")
+                job['company'] = c2.text_input("公司名称", value=job.get('company', ''), key=f"f_job_comp_{i}")
+
+                c3, c4, c5 = st.columns(3)
+                job['location'] = c3.text_input("地点", value=job.get('location', ''), key=f"f_job_loc_{i}")
+                job['from_date'] = c4.text_input("开始时间 (如: 2023-01)", value=job.get('from_date', ''),
+                                                 key=f"f_job_from_{i}")
+                job['to_date'] = c5.text_input("结束时间 (如: 至今)", value=job.get('to_date', ''), key=f"f_job_to_{i}")
+
+                # 描述处理：用换行符分割列表
+                desc_text = "\n".join(job.get('description', []))
+                new_desc = st.text_area("工作描述 (每行一条 bullet point)", value=desc_text, height=100,
+                                        key=f"f_job_desc_{i}")
+                job['description'] = [line.strip() for line in new_desc.split('\n') if line.strip()]
+
+                col_del, _ = st.columns([1, 4])
+                if col_del.button("🗑️ 删除此经历", key=f"f_del_job_{i}"):
+                    jobs.pop(i)
+                    st.session_state.manual_resume_form['work_experience'] = jobs
+                    st.rerun()
+
+        st.divider()
+
+        # --- C. 教育背景 (动态列表) ---
+        st.subheader("3. 教育背景")
+        edu_list = form_data.get('education', [])
+
+        if st.button("➕ 添加教育经历", key="btn_add_edu"):
+            edu_list.append({"degree": "", "university": "", "from_date": "", "to_date": "", "courses": []})
+            st.session_state.manual_resume_form['education'] = edu_list
+            st.rerun()
+
+        for i, edu in enumerate(edu_list):
+            with st.container(border=True):
+                c1, c2 = st.columns(2)
+                edu['degree'] = c1.text_input("学位/专业", value=edu.get('degree', ''), key=f"f_edu_deg_{i}")
+                edu['university'] = c2.text_input("学校名称", value=edu.get('university', ''), key=f"f_edu_uni_{i}")
+                c3, c4 = st.columns(2)
+                edu['from_date'] = c3.text_input("开始时间", value=edu.get('from_date', ''), key=f"f_edu_from_{i}")
+                edu['to_date'] = c4.text_input("结束时间", value=edu.get('to_date', ''), key=f"f_edu_to_{i}")
+
+                if st.button("🗑️ 删除", key=f"f_del_edu_{i}"):
+                    edu_list.pop(i)
+                    st.session_state.manual_resume_form['education'] = edu_list
+                    st.rerun()
+
+        st.divider()
+
+        # --- D. 技能与其他 (简化为文本域，方便快速输入) ---
+        st.subheader("4. 技能与成就 (简化版)")
+        st.info("💡 提示：为了快速上手，技能和项目暂时支持文本输入。复杂结构可在生成的 JSON 中后续微调。")
+
+        skills_text = st.text_area("技能列表 (格式：类别: 技能1, 技能2... 每行一类)",
+                                   value="\n".join([f"{s['name']}: {', '.join(s['skills'])}" for s in
+                                                    form_data.get('skill_section', [])]),
+                                   height=100, key="f_skills_txt")
+        # 简单解析回结构 (可选优化)
+        if skills_text:
+            parsed_skills = []
+            for line in skills_text.split('\n'):
+                if ':' in line:
+                    name, skills = line.split(':', 1)
+                    parsed_skills.append({"name": name.strip(), "skills": [s.strip() for s in skills.split(',')]})
+            form_data['skill_section'] = parsed_skills
+
+        achievements_text = st.text_area("主要成就 (每行一条)",
+                                         value="\n".join(form_data.get('achievements', [])),
+                                         height=80, key="f_achieve_txt")
+        form_data['achievements'] = [x.strip() for x in achievements_text.split('\n') if x.strip()]
+
+        # --- E. 导出操作区 ---
+        st.divider()
+        col_preview, col_download, col_clear = st.columns([1, 2, 1])
+
+        with col_preview:
+            if st.button("👁️ 预览 JSON 结构", key="btn_preview_json"):
+                st.json(form_data)
+
+        with col_download:
+            json_str = json.dumps(form_data, ensure_ascii=False, indent=2)
+            filename = f"{form_data['name'].replace(' ', '_') if form_data['name'] else 'resume'}.json"
+            st.download_button(
+                label="💾 生成并下载 JSON 文件",
+                data=json_str,
+                file_name=filename,
+                mime="application/json",
+                key="btn_download_json",
+                type="primary"
+            )
+
+        with col_clear:
+            if st.button("🔄 清空表单", key="btn_clear_form"):
+                st.session_state.manual_resume_form = {
+                    "name": "", "title": "", "summary": "", "phone": "", "email": "",
+                    "media": {"linkedin": "", "github": "", "medium": "", "devpost": ""},
+                    "work_experience": [], "education": [], "skill_section": [],
+                    "projects": [], "certifications": [], "achievements": []
+                }
+                st.rerun()
+
+    # ==============================================================================
+    # [新增功能] 结束
+    # ==============================================================================
+
+    # --- 模型配置区域 ---
+    col_1, col_2, col_3 = st.columns(3)
+
+    # 为了显示中文，我们创建一个映射字典，但提交时仍使用原始的 key
+    provider_display_map = {k: k for k in LLM_MAPPING.keys()}
+    # 可选：如果想显示更友好的名字，可以这样修改 (内部逻辑需相应调整，这里保持简单直接用 Key)
+    # provider_display_map = {"OpenAI": "OpenAI (GPT)", "Gemini": "Google Gemini", "Ollama": "Ollama (本地)", "Llama": "Llama"}
+
+    with col_1:
+        provider = st.selectbox("选择大模型提供商:", list(provider_display_map.keys()), index=0)
+
+    with col_2:
+        model_list = LLM_MAPPING[provider]['model']
+        # 如果模型列表是字符串，转为列表
+        if isinstance(model_list, str):
+            model_list = [model_list]
+        model = st.selectbox("选择具体模型:", model_list)
+
+    with col_3:
+        # 定义默认的 API Key (仅用于测试)
+        DEFAULT_API_KEY = "sk-993b13d43fe141d7bbe9f226c0bc9b71"
+
+        if provider not in ["Ollama", "Llama"]:
+            api_key = st.text_input(
+                "输入 API Key:",
+                type="password",
+                placeholder="sk-...",
+                value=DEFAULT_API_KEY  # 设置默认值
+            )
+        else:
+            api_key = None
+
+    st.markdown("<sub><sup>💡 推荐使用 GPT-4 以获得最佳效果。</sup></sub>", unsafe_allow_html=True)
+
+    # --- 操作按钮 ---
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        get_resume_button = st.button("📄 生成简历", key="get_resume", type="primary", use_container_width=True)
+
+    with col2:
+        get_cover_letter_button = st.button("✉️ 生成求职信", key="get_cover_letter", type="primary", use_container_width=True)
+
+    with col3:
+        get_both = st.button("🚀 全套生成 (简历 + 求职信)", key="both", type="primary", use_container_width=True)
+        if get_both:
+            get_resume_button = True
+            get_cover_letter_button = True
+
+    # --- 核心处理逻辑 ---
+    if get_resume_button or get_cover_letter_button:
+        # 1. 基础校验
+        if file is None:
+            st.toast(":red[⚠️ 请先上传您的简历或经历资料]", icon="⚠️")
+            st.stop()
+
+        if url == "" and text == "":
+            st.toast(":red[⚠️ 请输入招聘链接或粘贴职位描述文本]", icon="⚠️")
+            st.stop()
+
+        if api_key == "" and provider not in ["Ollama", "Llama"]:
+            st.toast(":red[⚠️ 请输入 API Key 以继续]", icon="⚠️")
+            st.stop()
+
+        # 2. 初始化模型
+        if file is not None and (url != "" or text != ""):
+            download_resume_path = os.path.join(os.path.dirname(__file__), "output")
+
+            resume_llm = AutoApplyModel(api_key=api_key, provider=provider, model=model, downloads_dir=download_resume_path)
+
+            # 保存上传的文件
+            os.makedirs("uploads", exist_ok=True)
+            file_path = os.path.abspath(os.path.join("uploads", file.name))
+            with open(file_path, "wb") as f:
+                f.write(file.getbuffer())
+
+            # A. 提取用户数据
+            with st.status("🤖 正在分析您的简历并提取关键信息...", expanded=True) as status_user:
+                user_data = resume_llm.user_data_extraction(file_path, is_st=True)
+                if user_data:
+                    st.write("提取到的用户画像预览:")
+                    st.json(user_data) # 使用 json 展示更清晰
+                    status_user.update(label="✅ 用户信息提取完成", state="complete", expanded=False)
+                else:
+                    status_user.update(label="❌ 用户信息提取失败", state="error")
+
+            # 清理临时上传文件
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            # 注意：原代码是 shutil.rmtree(dirname)，这里改为只删文件更安全，防止误删 uploads 文件夹本身
+            # 如果 uploads 为空也可以清理，但为了稳健只删当前文件
+
+            if user_data is None:
+                st.error("无法解析您的简历文件。请确保文件格式正确（PDF 可读取或标准 JSON）。")
+                st.markdown("<h3 style='text-align: center;'>请尝试重新上传</h3>", unsafe_allow_html=True)
+                st.stop()
+
+            # B. 提取职位详情
+            with st.status("🔍 正在解析职位描述 (JD)...", expanded=True) as status_job:
+                try:
+                    if url != "":
+                        job_details, jd_path = resume_llm.job_details_extraction(url=url, is_st=True)
+                    elif text != "":
+                        job_details, jd_path = resume_llm.job_details_extraction(job_site_content=text, is_st=True)
+
+                    if job_details:
+                        st.write("职位关键要求预览:")
+                        st.json(job_details)
+                        status_job.update(label="✅ 职位信息解析完成", state="complete", expanded=False)
+                    else:
+                        status_job.update(label="❌ 职位信息解析失败", state="error")
+                except Exception as e:
+                    st.error(f"解析职位描述时出错：{e}")
+                    st.stop()
+
+            if job_details is None:
+                st.error("无法处理职位描述。请检查链接是否有效或文本是否完整。")
+                st.markdown("<h3 style='text-align: center;'>请补充信息后重试</h3>", unsafe_allow_html=True)
+                st.stop()
+
+            # C. 生成简历
+            if get_resume_button:
+                with st.status("✍️ 正在为您定制简历...", expanded=True) as status_resume:
+                    resume_path, resume_details = resume_llm.resume_builder(job_details, user_data, is_st=True)
+                    if resume_path:
+                        status_resume.update(label="✅ 简历生成完毕", state="complete", expanded=False)
+                    else:
+                        status_resume.update(label="❌ 生成失败", state="error")
+
+                if resume_path:
+                    # 布局：标题 | 下载按钮 | Overleaf 按钮
+                    resume_col_1, resume_col_2, resume_col_3 = st.columns([0.35, 0.35, 0.3])
+                    with resume_col_1:
+                        st.subheader("📄 生成的简历")
+                    with resume_col_2:
+                        pdf_data = read_file(resume_path, "rb")
+                        st.download_button(
+                            label="⬇️ 下载 PDF 简历",
+                            data=pdf_data,
+                            file_name=os.path.basename(resume_path),
+                            key="download_pdf_button",
+                            mime="application/pdf",
+                            use_container_width=True
+                        )
+                    with resume_col_3:
+                        create_overleaf_button(resume_path)
+
+                    # 预览 PDF
+                    display_pdf(resume_path, type="image")
+                    st.toast("简历生成成功！", icon="✅")
+
+                    # --- 指标分析 ---
+                    st.subheader("📊 简历质量分析")
+                    st.caption("通过算法量化您的简历与职位的匹配度")
+
+                    for metric in ['overlap_coefficient', 'cosine_similarity']:
+                        # 计算分数
+                        user_personalization = globals()[metric](json.dumps(resume_details), json.dumps(user_data))
+                        job_alignment = globals()[metric](json.dumps(resume_details), json.dumps(job_details))
+                        job_match = globals()[metric](json.dumps(user_data), json.dumps(job_details))
+
+                        # 配置指标说明
+                        if metric == "overlap_coefficient":
+                            title = "关键词匹配度 (Token Space)"
+                            help_text = "基于精确的词符（单词或词根）匹配。就像玩“找相同”游戏。这种方法擅长发现具体的技能术语（如 'Python', 'Project Management'），非常适合技术类岗位。缺点是可能忽略同义词（例如它认为 'manage' 和 'supervise' 完全不同）。"
+                        elif metric == "cosine_similarity":
+                            title = "语义相似度 (Latent Space)"
+                            help_text = "基于词语背后的深层含义进行比较，而非仅仅看字面。就像比较两道菜的“风味”而不是“配料表”。在这个空间中，意思相近的词（如 'innovate' 和 'create'）距离很近。这能反映 AI 是否真正理解了职位的核心需求，即使使用的措辞不同。"
+
+                        st.markdown(f"**{title}**", help=help_text)
+                        col_m_1, col_m_2, col_m_3 = st.columns(3)
+
+                        col_m_1.metric(
+                            label=":green[个人特色保留度]",
+                            value=f"{user_personalization:.3f}",
+                            delta="新简历 vs 原始简历",
+                            delta_color="off"
+                        )
+                        col_m_2.metric(
+                            label=":blue[人岗匹配度]",
+                            value=f"{job_alignment:.3f}",
+                            delta="新简历 vs 职位要求",
+                            delta_color="normal" # 越高越好
+                        )
+                        col_m_3.metric(
+                            label=":violet[原始匹配度]",
+                            value=f"{job_match:.3f}",
+                            delta="原始简历 vs 职位要求",
+                            delta_color="inverse" # 用于对比提升
+                        )
+                    st.markdown("---")
+
+            # D. 生成求职信
+            if get_cover_letter_button:
+                with st.status("✍️ 正在撰写求职信...", expanded=True) as status_cv:
+                    cv_details, cv_path = resume_llm.cover_letter_generator(job_details, user_data, is_st=True)
+                    if cv_path:
+                        status_cv.update(label="✅ 求职信生成完毕", state="complete", expanded=False)
+
+                if cv_path:
+                    cv_col_1, cv_col_2 = st.columns([0.7, 0.3])
+                    with cv_col_1:
+                        st.subheader("✉️ 生成的求职信")
+                        # 显示文本内容 (假设 cv_details 是 markdown 文本)
+                        st.markdown(cv_details, unsafe_allow_html=True)
+                    with cv_col_2:
+                        cv_data = read_file(cv_path, "rb")
+                        st.download_button(
+                            label="⬇️ 下载 PDF 求职信",
+                            data=cv_data,
+                            file_name=os.path.basename(cv_path),
+                            key="download_cv_button",
+                            mime="application/pdf",
+                            use_container_width=True
+                        )
+                    st.markdown("---")
+                    st.toast("求职信生成成功！", icon="✅")
+
+            # 完成提示
+            st.toast("🎉 全部任务完成！", icon="👍")
+            st.success("生成过程顺利结束", icon="✅")
+            st.balloons()
+
+            refresh = st.button("🔄 重新开始 / 清空缓存")
+            if refresh:
+                st.cache_resource.clear()
+                st.cache_data.clear()
+                st.rerun()
+
+except Exception as e:
+    st.error(f"💥 系统发生严重错误：{e}")
+    st.markdown("""
+    ### 建议操作：
+    1. 检查 API Key 是否正确。
+    2. 确认网络连接正常。
+    3. 查看下方终端日志获取详细报错信息。
+    """)
+    st.stop()
+
+st.link_button("💬 反馈问题、建议或参与贡献", "https://github.com/Ztrimus/job-llm/issues", use_container_width=True)

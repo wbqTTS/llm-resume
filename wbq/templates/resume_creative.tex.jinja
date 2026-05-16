@@ -1,0 +1,128 @@
+\documentclass{resume}
+
+\input{styles/style_creative.tex}
+
+\begin{document}
+
+% ===== 姓名和联系方式（全局顶部）=====
+\name{\VAR{personal.name}}
+
+\contactline{%
+\iconcontact{phone}{\VAR{personal.phone}} \quad
+\iconcontact{envelope}{\VAR{personal.email}} \quad
+\iconcontact{github}{\VAR{personal.media.github}} \quad
+\iconcontact{linkedin}{\VAR{personal.media.linkedin}}
+}
+
+% ===== 双栏布局：使用 minipage 并排 =====
+\noindent
+\begin{minipage}[t]{0.35\textwidth}
+  \color{dark}
+
+  % ===== 左栏：个人简介 =====
+  \BLOCK{if personal.summary}
+  \sidebarsection{个人简介}
+  \VAR{personal.summary}
+  \vspace{10pt}
+  \BLOCK{endif}
+
+% ===== 左栏：专业技能 =====
+\sidebarsection{专业技能}
+\BLOCK{for s in skill_section}
+  \textcolor{primary}{\large \VAR{s.name}} \\
+  \BLOCK{for skill in s.skills}
+    {\color{dark} \VAR{skill}} \hspace{6pt}
+  \BLOCK{endfor}
+  \vspace{3pt} \\
+\BLOCK{endfor}
+
+% ===== 左栏：证书 =====
+\BLOCK{if certifications}
+\sidebarsection{证书}
+\BLOCK{for c in certifications}
+  \noindent
+  \textcolor{primary}{\faIcon{certificate}} \hspace{6pt}
+  \textbf{\color{dark} \VAR{c.name}} \\
+  \hspace{24pt}\textcolor{text}{\small \VAR{c.date}} \quad \textcolor{text}{\small \VAR{c.by}} \\
+  \vspace{4pt}
+\BLOCK{endfor}
+\BLOCK{endif}
+
+
+
+  % ===== 左栏：社会实践 =====
+  \BLOCK{if social_practice}
+  \sidebarsection{社会实践}
+  \BLOCK{for sp in social_practice}
+  \entry{\VAR{sp.role}}{}{}{
+    \begin{itemize}
+    \BLOCK{for d in sp.description}
+      \item \VAR{d}
+    \BLOCK{endfor}
+    \end{itemize}
+  }
+  \BLOCK{endfor}
+  \BLOCK{endif}
+
+
+\end{minipage}%
+\hfill
+{\color{rulecolor}\vrule width 1pt}% 竖线，宽度1pt
+\hfill
+\begin{minipage}[t]{0.60\textwidth}
+  \color{dark}
+
+  % ===== 右栏：教育背景 =====
+  \BLOCK{if education}
+  \sidebarsection{教育背景}
+  \BLOCK{for edu in education}
+  \educationentry{\VAR{edu.university}}{\VAR{edu.from_date} -- \VAR{edu.to_date}}{\VAR{edu.degree}}{
+    \BLOCK{if edu.courses}
+    \textbf{相关课程:} \VAR{", ".join(edu.courses)}
+    \BLOCK{endif}
+  }
+  \BLOCK{endfor}
+  \BLOCK{endif}
+
+  % ===== 右栏：工作经历 =====
+  \BLOCK{if work_experience}
+  \sidebarsection{工作经历}
+  \BLOCK{for job in work_experience}
+  \entry{\VAR{job.role}}{\VAR{job.from_date} -- \VAR{job.to_date}}{\VAR{job.company}, \VAR{job.location}}{
+    \begin{itemize}
+    \BLOCK{for d in job.description}
+      \item \VAR{d}
+    \BLOCK{endfor}
+    \end{itemize}
+  }
+  \BLOCK{endfor}
+  \BLOCK{endif}
+
+  % ===== 右栏：项目经历 =====
+  \BLOCK{if projects}
+  \sidebarsection{项目经历}
+  \BLOCK{for p in projects}
+  \entry{\VAR{p.name}}{\VAR{p.from_date} -- \VAR{p.to_date}}{\VAR{p.type}}{
+    \begin{itemize}
+    \BLOCK{for d in p.description}
+      \item \VAR{d}
+    \BLOCK{endfor}
+    \end{itemize}
+  }
+  \BLOCK{endfor}
+  \BLOCK{endif}
+
+% ===== 右栏：荣誉奖项 =====
+\BLOCK{if achievements}
+\sidebarsection{荣誉奖项}
+\BLOCK{for a in achievements}
+  \noindent
+  \textcolor{primary}{\faIcon{trophy}} \hspace{6pt}
+  \textbf{\color{dark} \VAR{a.name}} \hfill
+  \textcolor{text}{\small \VAR{a.date}} \\
+\BLOCK{endfor}
+\BLOCK{endif}
+
+\end{minipage}
+
+\end{document}

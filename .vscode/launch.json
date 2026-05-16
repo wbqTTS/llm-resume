@@ -16,7 +16,7 @@
             //     "-u",
             //     "https://www.linkedin.com/jobs/view/4003781804",
             //     "-m",
-            //     "/Users/saurabh/AA/convergent/projects/job-llm/zlm/demo_data/user_profile.json"
+            //     "/Users/saurabh/AA/convergent/projects/job-llm/wbq/demo_data/user_profile.json"
             // ],
             "args": ["run", "web_app.py"]
         }
